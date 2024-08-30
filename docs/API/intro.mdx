@@ -1,0 +1,57 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Introduction
+
+The API aims to provide a foundation for the different parts of the [Jonas_Jones Ecosystem](jj_ecosystem) to interact with each other.
+
+## Composition
+
+The APi features 2 parts, the [front-end](#front-end) and the [back-end](#back-end)
+
+### Front-End
+
+A cloudflare worker available on [Github](https://github.com/JonasunderscoreJones/api-worker/) that routes the traffic to the [back-end](#back-end) and has a route for the API's uptime status:
+
+- GET **/status** - Get API uptime status
+:::tip[Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+API is up and running
+{
+    "status": 200,
+    "statusText": "Ok"
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+### Back-End
+
+:::info
+
+The Back-End is only available when the `/status` route returns code `200`
+
+In theory this should always be the case but it is not guaranteed. Downtime can occur from time to time.
+
+:::
+
+A Rust back-end available on [Github](https://github.com/JonasunderscoreJones/jonas_jones-api) that handles all the forwarded requests from the [front-end](#front-end). The API is currently in it's first version therefore all routes start with `/v1/`. The routes are referenced on the [V! Routes](/API/v1-routes) page.
+
+
+
