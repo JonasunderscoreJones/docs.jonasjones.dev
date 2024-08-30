@@ -1,0 +1,103 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Basic
+The basic routes of the API
+
+## GET /v1/help
+Get a help message.
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+Please refer to the wiki at https://wiki.jonasjones.dev/Api/
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+
+## GET /v1/ping
+Get a ping back from the API
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+pong
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/version
+Get the version of the Rust api back-end
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+["0.0.1+alpha-build01"]
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/debug/headers
+Get the incoming headers of the request
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "Origin": "...",
+    "Referer": "...",
+    "User-Agent": "...",
+    "...": "..."
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::

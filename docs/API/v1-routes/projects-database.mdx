@@ -1,0 +1,506 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Projects Database
+A database of all my public projects that are also visible on my [projects site](https://jonasjones.dev/projects)
+
+:::note
+
+The projects are updated once a day
+
+:::
+
+
+## GET /v1/projects/last_update
+
+Get the date and time of the last update made to the projects database
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+"2024-08-30 00:22:59 UTC"
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/getall
+→ /v1/projects/filter/getall?limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
+
+Get all the comeback entries limited by <span style={{ color: "green" }}>limit</span> and <span style={{ color: "green" }}>offset</span>
+
+| Parameter | Type                | Description                         | Example | Required | Default Value (if optional) |
+| --------- | ------------------- | ----------------------------------- | ------- | -------- | --------------------------- |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select | 2       | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                | 5       | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
+            ],
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
+        },
+        {
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
+            ],
+                "languages": {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
+    ],
+    "count": 2
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/daterange
+→ /v1/kcomebacks/filter/daterange?start=*<span style={{ color: "green" }}>start</span>*&end=*<span style={{ color: "green" }}>end</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+
+Get all comeback entries within a given timeframe
+
+| Parameter | Type                | Description                         | Example    | Required | Default Value (if optional) |
+| --------- | ------------------- | ----------------------------------- | ---------- | -------- | --------------------------- |
+| start     | Date (YYYY-MM-DD)   | start date for date range           | 2024-8-2   | Yes      | -                           |
+| end       | Date (YYYY-MM-DD)   | end date for date range             | 2024-10-22 | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select | 2          | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                | 5          | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": "PENOMECO",
+            "title": "FILM",
+            "types": [
+                "single"
+            ],
+            "links": [
+                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+    ],
+    "count": 2
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/first
+
+Get the first (oldest) comeback entry
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        }
+    ],
+    "count": 1
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/last
+
+Get the last (most recent) comeback entry
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        }
+    ],
+    "count": 1
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/artist
+→ /v1/kcomebacks/filter/daterange?artist=*<span style={{ color: "green" }}>artist</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+
+Get all comeback entries where the provided <span style={{ color: "green" }}>artist</span> string exists within an entrie's artist name
+
+| Parameter | Type                | Description                                          | Example    | Required | Default Value (if optional) |
+| --------- | ------------------- | ---------------------------------------------------- | ---------- | -------- | --------------------------- |
+| artist    | String              | Partial or full artist name (letter case irrelevant) | "Ateez"    | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                  | 2          | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                                 | 5          | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": "PENOMECO",
+            "title": "FILM",
+            "types": [
+                "single"
+            ],
+            "links": [
+                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+    ],
+    "count": 2
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/title
+→ /v1/kcomebacks/filter/title?title=*<span style={{ color: "green" }}>title</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+
+Get all comeback entries where the provided <span style={{ color: "green" }}>title</span> string exists within an entrie's song title
+
+| Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
+| --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
+| title     | String              | Partial or full song title (letter case irrelevant) | "Sneakers" | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                 | 2          | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                                | 5          | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": "PENOMECO",
+            "title": "FILM",
+            "types": [
+                "single"
+            ],
+            "links": [
+                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+    ],
+    "count": 2
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/type
+→ /v1/kcomebacks/filter/type?type=*<span style={{ color: "green" }}>type</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+
+Get all comeback entries where the provided <span style={{ color: "green" }}>type</span> string equals to an entrie's type. All entry types can be fetched using [GET /v1/v1/kcomebacks/filter/gettypes](#get-kcomebacksfiltergettypes)
+
+| Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
+| --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
+| type      | String              | Full comeback type (letter case **RELEVANT**)       | "single"   | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                 | 2          | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                                | 5          | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": 	"Lim Heo Nil",
+            "title": "Heart For Someone",
+            "types": [
+                "single",
+                "digital"
+            ],
+            "links": [
+                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+        {
+            "date": "2017-03-1",
+            "time": "--:--",
+            "artist": "PENOMECO",
+            "title": "FILM",
+            "types": [
+                "single"
+            ],
+            "links": [
+                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
+                "https://www.reddit.com/5wsn0p"
+            ]
+        },
+    ],
+    "count": 2
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/gettypes
+
+Get a list of the different types of all comeback entries
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        "album",
+        "signle",
+        "digital",
+        "japanese",
+        "..."
+    ],
+    "total_results": 127
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/kcomebacks/filter/getinfo
+
+Get the <span style={{ color: "green" }}>entry-count</span>, <span style={{ color: "green" }}>artist-count</span>, <span style={{ color: "green" }}>start date</span> and <span style={{ color: "green" }}>end date</span>
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "num_items": 143,
+    "num_artists": 127,
+    "start_date": "2017-3-1",
+    "end_date": "2024-8-30"
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::

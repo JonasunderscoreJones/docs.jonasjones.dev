@@ -1,0 +1,55 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Minecraft Mod Update Checker
+A simple way for a mod to check if it is up to date
+
+## GET /v1/updates/minecraft/mods/
+→ /v1/updates/minecraft/mods/*<span style={{ color: "green" }}>package</span>*/*<span style={{ color: "green" }}>modloader</span>*/*<span style={{ color: "green" }}>minecraftversion</span>*/*<span style={{ color: "green" }}>modversion</span>*
+
+| Parameter        | Type                | Description                                         | Example                     | Required | Default Value (if optional) |
+| ---------------- | ------------------- | --------------------------------------------------- | -------------------------   | -------- | --------------------------- |
+| package name     | String              | Full package name (letter case **RELEVANT**)        | "me.jonasjones.mcwebserver" | Yes      | -                           |
+| modloader        | String              | modloader id ("fabricquilt" or "forge")             | "fabricquilt                | Yes      | -                           |
+| minecraftversion | Version Number      | The Minecraft Version                               | "1.14.4"                    | Yes      | -                           |
+| modversion       | Version Number      | The Mod Version                                     | "0.3.2"                     | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "promos": {
+        "latest": "0.3.2",
+        "recommended": "0.3.2"
+    },
+    "upToDate": true,
+    "telemetry_enabled": false
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+
+:::danger[//TODO]
+
+- Projects Database only `last_update` is done. others have been copied from kcomebacks as tamplates but didnt replace the shit yet.
+
+- Missing Tabs for other error messages in ALL routes like BAD REQUEST and INTERNAL SERVER ERROR
+- Response variables types tables missing for ALL routes inside the individual resonse code tabs
+
+:::

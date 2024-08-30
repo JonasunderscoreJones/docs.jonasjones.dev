@@ -1,0 +1,90 @@
+---
+sidebar_position: 4
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Run Scripts
+The available run-scripts routes for the pre-setup python scripts for the [K-Comebacks Database](./k-comebacks-database) ([on Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/rpopfetch.py)), [Projects Database](./projects-database) ([on Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/update_projects.py)) and the [likesongsync2.py script](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/likedsongsync2.py]). 
+
+:::note
+
+If the requested script is already running, the request will be ignored.
+
+:::
+
+## GET /v1/run/kcomebacks
+
+Run the [rpopfetch.py Script](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/rpopfetch.py) to update the [K-Comebacks Database](./k-comebacks-database)
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "status": "udating..."
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/run/projects
+
+Run the [update_projects.py Script](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/update_projects.py) to update the [Projects Database](./projects-database)
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "status": "udating..."
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/run/synclikedsongs
+
+Run the [likedsongsync2.py Script](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/likedsongsync2.py) to sync my liked songs from Spotify with [Last.fm](https://fm.jonasjones.dev)
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "status": "udating..."
+}
+```
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+    </TabItem>
+</Tabs>
+:::
