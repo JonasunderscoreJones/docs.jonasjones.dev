@@ -84,6 +84,8 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+    onBrokenLinks: 'warn',
+    onBrokenMarkdownLinks: 'warn',
 };
 
 export default config;
