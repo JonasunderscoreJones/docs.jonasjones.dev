@@ -23,7 +23,7 @@ const config = {
   organizationName: 'JonasunderscoreJones', // Usually your GitHub org/user name.
   projectName: 'docs.jonasjones.dev', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -54,6 +54,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      prism: {
+        additionalLanguages: ['properties', 'ini'],
+      },
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
@@ -79,13 +82,7 @@ const config = {
         style: 'dark',
         copyright: `Website by Jonas_Jones 2021 - ${new Date().getFullYear()}`,
       },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-    }),
-    onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    })
 };
 
 export default config;
