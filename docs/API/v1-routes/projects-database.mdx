@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Projects Database
-A database of all my public projects that are also visible on my [projects site](https://jonasjones.dev/projects)
+A database of all my public projects including some metadata that are also visible on my [projects site](https://jonasjones.dev/projects)
 
 :::note
 
@@ -26,6 +26,18 @@ Get the date and time of the last update made to the projects database
 "2024-08-30 00:22:59 UTC"
 ```
     </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
     <TabItem value="503" label="503">
 ```json
 API is down
@@ -34,6 +46,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -41,7 +57,7 @@ API is down
 ## GET /v1/projects/filter/getall
 → /v1/projects/filter/getall?limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all the comeback entries limited by <span style={{ color: "green" }}>limit</span> and <span style={{ color: "green" }}>offset</span>
+Get all the project entries limited by <span style={{ color: "green" }}>limit</span> and <span style={{ color: "green" }}>offset</span>
 
 | Parameter | Type                | Description                         | Example | Required | Default Value (if optional) |
 | --------- | ------------------- | ----------------------------------- | ------- | -------- | --------------------------- |
@@ -88,7 +104,7 @@ Get all the comeback entries limited by <span style={{ color: "green" }}>limit</
                 "api",
                 "tools"
             ],
-                "languages": {
+            "languages": {
                 "Rust": 73113
             },
             "gh_api": "JonasunderscoreJones/jonas_jones-api",
@@ -105,6 +121,45 @@ Get all the comeback entries limited by <span style={{ color: "green" }}>limit</
     "count": 2
 }
 ```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -114,14 +169,18 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/daterange
-→ /v1/kcomebacks/filter/daterange?start=*<span style={{ color: "green" }}>start</span>*&end=*<span style={{ color: "green" }}>end</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+## GET /v1/projects/filter/lastupdaterange
+→ /v1/projects/filter/lastupdaterange?start=*<span style={{ color: "green" }}>start</span>*&end=*<span style={{ color: "green" }}>end</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries within a given timeframe
+Get all projects that were last updated within a given timeframe
 
 | Parameter | Type                | Description                         | Example    | Required | Default Value (if optional) |
 | --------- | ------------------- | ----------------------------------- | ---------- | -------- | --------------------------- |
@@ -137,36 +196,95 @@ Get all comeback entries within a given timeframe
 {
     "results": [
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
             ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
         },
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": "PENOMECO",
-            "title": "FILM",
-            "types": [
-                "single"
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
             ],
-            "links": [
-                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        },
+            "languages": {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
     ],
     "count": 2
 }
 ```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -176,100 +294,22 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/first
+## GET /v1/projects/filter/title
+→ /v1/projects/filter/title?title=*<span style={{ color: "green" }}>title</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get the first (oldest) comeback entry
-
-:::tip[**Example** Response]
-<Tabs>
-    <TabItem value="200" label="200">
-```json
-{
-    "results": [
-        {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
-            ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        }
-    ],
-    "count": 1
-}
-```
-    </TabItem>
-    <TabItem value="503" label="503">
-```json
-API is down
-{
-    "status": 503,
-    "statusText": "Service Unavailable"
-}
-```
-    </TabItem>
-</Tabs>
-:::
-
-## GET /v1/kcomebacks/filter/last
-
-Get the last (most recent) comeback entry
-
-:::tip[**Example** Response]
-<Tabs>
-    <TabItem value="200" label="200">
-```json
-{
-    "results": [
-        {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
-            ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        }
-    ],
-    "count": 1
-}
-```
-    </TabItem>
-    <TabItem value="503" label="503">
-```json
-API is down
-{
-    "status": 503,
-    "statusText": "Service Unavailable"
-}
-```
-    </TabItem>
-</Tabs>
-:::
-
-## GET /v1/kcomebacks/filter/artist
-→ /v1/kcomebacks/filter/daterange?artist=*<span style={{ color: "green" }}>artist</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
-
-Get all comeback entries where the provided <span style={{ color: "green" }}>artist</span> string exists within an entrie's artist name
+Get all project entries where the provided <span style={{ color: "green" }}>title</span> string exists within an entry's title
 
 | Parameter | Type                | Description                                          | Example    | Required | Default Value (if optional) |
 | --------- | ------------------- | ---------------------------------------------------- | ---------- | -------- | --------------------------- |
-| artist    | String              | Partial or full artist name (letter case irrelevant) | "Ateez"    | Yes      | -                           |
+| title     | String              | Partial or full title (letter case irrelevant)       | "API"      | Yes      | -                           |
 | limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                  | 2          | Yes      | -                           |
 | offset    | Number (*posirive*) | offset from *id* `0`                                 | 5          | Yes      | -                           |
 
@@ -280,36 +320,95 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>art
 {
     "results": [
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
             ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
         },
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": "PENOMECO",
-            "title": "FILM",
-            "types": [
-                "single"
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
             ],
-            "links": [
-                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        },
+            "languages": {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
     ],
     "count": 2
 }
 ```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -319,20 +418,24 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/title
-→ /v1/kcomebacks/filter/title?title=*<span style={{ color: "green" }}>title</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+## GET /v1/projects/filter/description
+→ /v1/projects/filter/description?description=*<span style={{ color: "green" }}>description</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries where the provided <span style={{ color: "green" }}>title</span> string exists within an entrie's song title
+Get all project entries where the provided <span style={{ color: "green" }}>description</span> string exists within an entry's description
 
-| Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
-| --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
-| title     | String              | Partial or full song title (letter case irrelevant) | "Sneakers" | Yes      | -                           |
-| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                 | 2          | Yes      | -                           |
-| offset    | Number (*posirive*) | offset from *id* `0`                                | 5          | Yes      | -                           |
+| Parameter   | Type                | Description                                          | Example    | Required | Default Value (if optional) |
+| ----------- | ------------------- | ---------------------------------------------------- | ---------- | -------- | --------------------------- |
+| description | String              | Partial or full description (letter case irrelevant) | "Sneakers" | Yes      | -                           |
+| limit       | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                  | 2          | Yes      | -                           |
+| offset      | Number (*posirive*) | offset from *id* `0`                                 | 5          | Yes      | -                           |
 
 :::tip[**Example** Response]
 <Tabs>
@@ -341,36 +444,95 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>tit
 {
     "results": [
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
             ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
         },
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": "PENOMECO",
-            "title": "FILM",
-            "types": [
-                "single"
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
             ],
-            "links": [
-                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        },
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
     ],
     "count": 2
 }
 ```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -380,20 +542,24 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/type
-→ /v1/kcomebacks/filter/type?type=*<span style={{ color: "green" }}>type</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+## GET /v1/projects/filter/search
+→ /v1/projects/filter/search?search=*<span style={{ color: "green" }}>search</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries where the provided <span style={{ color: "green" }}>type</span> string equals to an entrie's type. All entry types can be fetched using [GET /v1/v1/kcomebacks/filter/gettypes](#get-kcomebacksfiltergettypes)
+Get all project entries where the provided <span style={{ color: "green" }}>search</span> string exists in a project entry's title or description.
 
-| Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
-| --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
-| type      | String              | Full comeback type (letter case **RELEVANT**)       | "single"   | Yes      | -                           |
-| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                 | 2          | Yes      | -                           |
-| offset    | Number (*posirive*) | offset from *id* `0`                                | 5          | Yes      | -                           |
+| Parameter | Type                | Description                                                  | Example | Required | Default Value (if optional) |
+| --------- | ------------------- | ------------------------------------------------------------ | ------- | -------- | --------------------------- |
+| search    | String              | partial or full name of description (letter case irrelevant) | "the"   | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select                          | 2       | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                                         | 5       | Yes      | -                           |
 
 :::tip[**Example** Response]
 <Tabs>
@@ -402,36 +568,95 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>typ
 {
     "results": [
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": 	"Lim Heo Nil",
-            "title": "Heart For Someone",
-            "types": [
-                "single",
-                "digital"
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
             ],
-            "links": [
-                "https://play.spotify.com…m/7lIMFbUB5tV8vqJT0gH40W",
-                "https://www.reddit.com/5wsn0p"
-            ]
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
         },
         {
-            "date": "2017-03-1",
-            "time": "--:--",
-            "artist": "PENOMECO",
-            "title": "FILM",
-            "types": [
-                "single"
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
             ],
-            "links": [
-                "https://play.spotify.com/album/2FwUxt5jYvcQc3ZgZRaeEL",
-                "https://www.reddit.com/5wsn0p"
-            ]
-        },
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
     ],
     "count": 2
 }
 ```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -441,13 +666,24 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/gettypes
+## GET /v1/projects/filter/status
+→ /v1/projects/filter/status?status=*<span style={{ color: "green" }}>status</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get a list of the different types of all comeback entries
+Get all project entries where the provided <span style={{ color: "green" }}>status</span> string matches an entry's status. All entry statuses can be fetched using [GET /v1/projects/filter/getstatuses](#get-v1projectsfiltergetstatuses)
+
+| Parameter | Type                | Description                                  | Example | Required | Default Value (if optional) |
+| --------- | ------------------- | -------------------------------------------- | ------- | -------- | --------------------------- |
+| status    | String              | full project status (letter case irrelevant) | "alpha" | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select          | 2       | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                         | 5       | Yes      | -                           |
 
 :::tip[**Example** Response]
 <Tabs>
@@ -455,15 +691,519 @@ Get a list of the different types of all comeback entries
 ```json
 {
     "results": [
-        "album",
-        "signle",
-        "digital",
-        "japanese",
+        {
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
+            ],
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
+        },
+        {
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
+            ],
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
+    ],
+    "count": 2
+}
+```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/statuscolor
+→ /v1/projects/filter/statuscolor?statuscolor=*<span style={{ color: "green" }}>statuscolor</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
+
+Get all project entries where the provided <span style={{ color: "green" }}>statuscolor</span> string matches an entry's statuscolor. All entry statuscolors can be fetched using [GET /v1/projects/filter/getcolors](#get-v1projectsfiltergetcolors)
+
+| Parameter   | Type                | Description                                       | Example | Required | Default Value (if optional) |
+| ----------- | ------------------- | ------------------------------------------------- | ------- | -------- | --------------------------- |
+| statuscolor | String              | full project statuscolor (letter case irrelevant) | "green" | Yes      | -                           |
+| limit       | Number (0 ≤ n ≤ 50) | maximum amount of entries to select               | 2       | Yes      | -                           |
+| offset      | Number (*posirive*) | offset from *id* `0`                              | 5       | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
+            ],
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
+        },
+        {
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
+            ],
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
+    ],
+    "count": 2
+}
+```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/category
+→ /v1/projects/filter/category?category=*<span style={{ color: "green" }}>category</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
+
+Get all project entries where the provided <span style={{ color: "green" }}>category</span> string matches an entry's category. All entry categories can be fetched using [GET /v1/projects/filter/getcategories](#get-v1projectsfiltergetcategories)
+
+| Parameter | Type                | Description                                      | Example  | Required | Default Value (if optional) |
+| --------- | ------------------- | ------------------------------------------------ | -------- | -------- | --------------------------- |
+| category  | String              | full project category (letter case **RELEVANT**) | "webdev" | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select              | 2        | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                             | 5        | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
+            ],
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
+        },
+        {
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
+            ],
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
+    ],
+    "count": 2
+}
+```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/language
+→ /v1/projects/filter/language?language=*<span style={{ color: "green" }}>language</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
+
+Get all project entries where the provided <span style={{ color: "green" }}>language</span> string matches an entry's language. All entry languages can be fetched using [GET /v1/projects/filter/getlangs](#get-v1projectsfiltergetlangs)
+
+| Parameter | Type                | Description                                      | Example | Required | Default Value (if optional) |
+| --------- | ------------------- | ------------------------------------------------ | ------- | -------- | --------------------------- |
+| language  | String              | full project language (letter case **RELEVANT**) | "Java"  | Yes      | -                           |
+| limit     | Number (0 ≤ n ≤ 50) | maximum amount of entries to select              | 2       | Yes      | -                           |
+| offset    | Number (*posirive*) | offset from *id* `0`                             | 5       | Yes      | -                           |
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        {
+            "title": "Website",
+            "description": "My website at https://jonasjones.dev",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "webdev",
+                "website"
+            ],
+            "languages": {
+                "Svelte": 39242,
+                "CSS": 5297,
+                "JavaScript": 2652,
+                "TypeScript": 1272,
+                "HTML": 406
+            },
+            "gh_api": "JonasunderscoreJones/jonasjones.dev",
+            "version": "1.2.3",
+            "backgroud": "/homepage.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonasjones.dev"
+            },
+            "visible": true,
+            "last_update": 1723941271
+        },
+        {
+            "title": "Jonas_Jones API",
+            "description": "api used for my website",
+            "status": "release",
+            "statuscolor": "green",
+            "categories": [
+                "api",
+                "tools"
+            ],
+            "languages" {
+                "Rust": 73113
+            },
+            "gh_api": "JonasunderscoreJones/jonas_jones-api",
+            "version": "0.4.1",
+            "backgroud": "/jjapi.png",
+            "links": {
+                "GH": "https://github.com/JonasunderscoreJones/jonas_jones-api",
+                "WB": "https://api.jonasjones.dev/v1/help"
+            },
+            "visible": true,
+            "last_update": 1719693295
+        }
+    ],
+    "count": 2
+}
+```
+| Parameter   | Type               | Description                                                                                          |
+| ----------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| title       | String             | The name of the project                                                                              |
+| description | String             | The description of the project                                                                       |
+| status      | String             | The status of the project                                                                            |
+| statuscolor | String             | The color of the status                                                                              |
+| categories  | [String]           | The categories of the project                                                                        |
+| languages   | [String: String]   | The languages used in the project and the amount of code written in them                             |
+| gh_api      | String             | The GitHub repository of the project                                                                 |
+| version     | String             | The version of the project                                                                           |
+| backgroud   | String             | The background image of the project                                                                  |
+| links       | [String: String]   | The links of the project. These include GH (Github), WB (Website), MR (Modrinth) and CF (Curseforge) |
+| visible     | Boolean            | Wether the project is visible on the projects site                                                   |
+| last_update | Unix Timestamp     | The last time the project was updated                                                                |
+| count       | Number             | The amount of projects returned                                                                      |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/getstatuses
+
+Get a list of the different statuses of all project entries
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        "alpha",
+        "beta",
+        "release",
         "..."
     ],
     "total_results": 127
 }
 ```
+| Parameter     | Type     | Description                            |
+| ------------- | -------- | -------------------------------------- |
+| results       | [String] | The different statuses of the projects |
+| total_results | Number   | The amount of different statuses       |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -473,25 +1213,48 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
-## GET /v1/kcomebacks/filter/getinfo
+## GET /v1/projects/filter/getcolors
 
-Get the <span style={{ color: "green" }}>entry-count</span>, <span style={{ color: "green" }}>artist-count</span>, <span style={{ color: "green" }}>start date</span> and <span style={{ color: "green" }}>end date</span>
+Get a list of the different status colors of all project entries
 
 :::tip[**Example** Response]
 <Tabs>
     <TabItem value="200" label="200">
 ```json
 {
-    "num_items": 143,
-    "num_artists": 127,
-    "start_date": "2017-3-1",
-    "end_date": "2024-8-30"
+    "results": [
+        "red",
+        "orange",
+        "green",
+        "..."
+    ],
+    "total_results": 127
 }
 ```
+| Parameter     | Type     | Description                                 |
+| ------------- | -------- | ------------------------------------------- |
+| results       | [String] | The different status colors of the projects |
+| total_results | Number   | The amount of different status colors       |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -501,6 +1264,112 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/getcategories
+
+Get a list of the different categories of all project entries
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        "tool",
+        "mcmodding",
+        "minecraft",
+        "..."
+    ],
+    "total_results": 127
+}
+```
+| Parameter     | Type     | Description                              |
+| ------------- | -------- | ---------------------------------------- |
+| results       | [String] | The different categories of the projects |
+| total_results | Number   | The amount of different categories       |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+</Tabs>
+:::
+
+## GET /v1/projects/filter/getlangs
+
+Get a list of the different languages of all project entries
+
+:::tip[**Example** Response]
+<Tabs>
+    <TabItem value="200" label="200">
+```json
+{
+    "results": [
+        "Svelte",
+        "Java",
+        "CSS",
+        "..."
+    ],
+    "total_results": 127
+}
+```
+| Parameter     | Type     | Description                             |
+| ------------- | -------- | --------------------------------------- |
+| results       | [String] | The different languages of the projects |
+| total_results | Number   | The amount of different languages       |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="503" label="503">
+```json
+API is down
+{
+    "status": 503,
+    "statusText": "Service Unavailable"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::

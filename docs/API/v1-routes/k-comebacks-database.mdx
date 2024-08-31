@@ -31,6 +31,18 @@ Get the date and time of the last update made to the comeback database
 "2024-08-16 12:05:04 UTC"
 ```
     </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
     <TabItem value="503" label="503">
 ```json
 API is down
@@ -39,6 +51,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -82,6 +98,39 @@ If the entry-count is fetched using [GET /v1/kcomebacks/filter/getinfo](#get-v1k
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -91,6 +140,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -142,6 +195,39 @@ Get all the comeback entries limited by <span style={{ color: "green" }}>limit</
     "count": 2
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -151,12 +237,16 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
 ## GET /v1/kcomebacks/filter/daterange
-→ /v1/kcomebacks/filter/daterange?start=*<span style={{ color: "green" }}>start</span>*&end=*<span style={{ color: "green" }}>end</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+→ /v1/kcomebacks/filter/daterange?start=*<span style={{ color: "green" }}>start</span>*&end=*<span style={{ color: "green" }}>end</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
 Get all comeback entries within a given timeframe
 
@@ -204,6 +294,39 @@ Get all comeback entries within a given timeframe
     "count": 2
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -213,6 +336,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -245,6 +372,27 @@ Get the first (oldest) comeback entry
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -254,6 +402,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -286,6 +438,27 @@ Get the last (most recent) comeback entry
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -295,14 +468,18 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
 ## GET /v1/kcomebacks/filter/artist
-→ /v1/kcomebacks/filter/daterange?artist=*<span style={{ color: "green" }}>artist</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+→ /v1/kcomebacks/filter/artist?artist=*<span style={{ color: "green" }}>artist</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries where the provided <span style={{ color: "green" }}>artist</span> string exists within an entrie's artist name
+Get all comeback entries where the provided <span style={{ color: "green" }}>artist</span> string exists within an entry's artist name
 
 | Parameter | Type                | Description                                          | Example    | Required | Default Value (if optional) |
 | --------- | ------------------- | ---------------------------------------------------- | ---------- | -------- | --------------------------- |
@@ -347,6 +524,39 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>art
     "count": 2
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -356,14 +566,18 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
 ## GET /v1/kcomebacks/filter/title
-→ /v1/kcomebacks/filter/title?title=*<span style={{ color: "green" }}>title</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+→ /v1/kcomebacks/filter/title?title=*<span style={{ color: "green" }}>title</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries where the provided <span style={{ color: "green" }}>title</span> string exists within an entrie's song title
+Get all comeback entries where the provided <span style={{ color: "green" }}>title</span> string exists within an entry's song title
 
 | Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
 | --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
@@ -408,6 +622,39 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>tit
     "count": 2
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -417,14 +664,18 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
 
 ## GET /v1/kcomebacks/filter/type
-→ /v1/kcomebacks/filter/type?type=*<span style={{ color: "green" }}>type</span>*&limit=*<span style={{ color: "green" }}>offset</span>*&limit=*<span style={{ color: "green" }}>limit</span>*
+→ /v1/kcomebacks/filter/type?type=*<span style={{ color: "green" }}>type</span>*&limit=*<span style={{ color: "green" }}>limit</span>*&offset=*<span style={{ color: "green" }}>offset</span>*
 
-Get all comeback entries where the provided <span style={{ color: "green" }}>type</span> string equals to an entrie's type. All entry types can be fetched using [GET /v1/kcomebacks/filter/gettypes](#get-v1kcomebacksfiltergettypes)
+Get all comeback entries where the provided <span style={{ color: "green" }}>type</span> string matches an entry's type. All entry types can be fetched using [GET /v1/kcomebacks/filter/gettypes](#get-v1kcomebacksfiltergettypes)
 
 | Parameter | Type                | Description                                         | Example    | Required | Default Value (if optional) |
 | --------- | ------------------- | --------------------------------------------------- | ---------- | -------- | --------------------------- |
@@ -469,6 +720,39 @@ Get all comeback entries where the provided <span style={{ color: "green" }}>typ
     "count": 2
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -478,6 +762,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -501,6 +789,22 @@ Get a list of the different types of all comeback entries
     "total_results": 127
 }
 ```
+| Parameter     | Type     | Description                                         |
+| ------------- | -------- | --------------------------------------------------- |
+| results       | [String] | List of all the different types of comeback entries |
+| total_results | Number   | Amount of different types of comeback entries       |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -510,6 +814,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -529,6 +837,24 @@ Get the <span style={{ color: "green" }}>entry-count</span>, <span style={{ colo
     "end_date": "2024-8-30"
 }
 ```
+| Parameter   | Type        | Description                                |
+| ----------- | ----------- | ------------------------------------------ |
+| num_items   | Number      | Amount of comeback entries                 |
+| num_artists | Number      | Amount of different artists                |
+| start_date  | Date String | The date of the first (oldest) entry       |
+| end_date    | Date String | The date of the last (most recent) entry   |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -538,6 +864,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -576,6 +906,27 @@ The timezone used for this query is `CEST UTC+02:00` while the timezone used for
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -585,6 +936,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -623,6 +978,27 @@ The timezone used for this query is `CEST UTC+02:00` while the timezone used for
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -632,6 +1008,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::
@@ -670,6 +1050,27 @@ The timezone used for this query is `CEST UTC+02:00` while the timezone used for
     "count": 1
 }
 ```
+| Parameter | Type        | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| date      | Date String | The date of the comeback in KST (UTC+09:00)                                |
+| time      | Time String | The date of the comeback in KST (UTC+09:00)                                |
+| artist    | String      | The Artist name(s)                                                         |
+| title     | String      | The comeback name                                                          |
+| types     | [String]    | List of the types                                                          |
+| links     | [String]    | List of Links to Platforms like Spotify, Youtube and Reddit (if available) |
+| count     | Number      | Amount of matching comeback entries that were found                        |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -679,6 +1080,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
 :::

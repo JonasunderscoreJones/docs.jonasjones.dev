@@ -31,6 +31,36 @@ A simple way for a mod to check if it is up to date
     "telemetry_enabled": false
 }
 ```
+| Parameter         | Type           | Description                                                                   |
+| ----------------- | -------------- | ----------------------------------------------------------------------------- |
+| latest            | Version Number | The version number of the latest version for the given Minecraft Version      |
+| recommended       | Version Number | The version number of the recommended version for the given Minecraft Version |
+| upToDate          | Boolean        | Wether the mod is up to date or not                                           |
+| telemetry_enabled | Boolean        | Wether telemetry is enabled or not                                            |
+    </TabItem>
+    <TabItem value="400" label="400">
+```json
+{
+    "status": 400,
+    "statusText": "Bad Request"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
+    </TabItem>
+    <TabItem value="500" label="500">
+```json
+{
+    "status": 500,
+    "statusText": "Internal Server Error"
+}
+```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
     <TabItem value="503" label="503">
 ```json
@@ -40,16 +70,10 @@ API is down
     "statusText": "Service Unavailable"
 }
 ```
+| Parameter  | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| status     | Number | The status code of the error |
+| statusText | String | The status text of the error |
     </TabItem>
 </Tabs>
-:::
-
-
-:::danger[//TODO]
-
-- Projects Database only `last_update` is done. others have been copied from kcomebacks as tamplates but didnt replace the shit yet.
-
-- Missing Tabs for other error messages in ALL routes like BAD REQUEST and INTERNAL SERVER ERROR
-- Response variables types tables missing for ALL routes inside the individual resonse code tabs
-
 :::
