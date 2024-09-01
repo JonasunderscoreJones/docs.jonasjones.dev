@@ -1,0 +1,10 @@
+{
+    "position": 2,
+    "label": "Advanced API",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "The Advanced API documentation."
+    }
+  }

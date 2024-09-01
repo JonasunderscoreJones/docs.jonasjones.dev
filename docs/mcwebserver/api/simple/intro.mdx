@@ -1,0 +1,264 @@
+---
+slug: /mcwebserver/api/simple
+sidebar_position: 1
+---
+
+# Introduction
+
+This API allows for gather the most surface-level information about a minecraft server.
+
+All API calls have the prefix `/api/v1/` and are GET requests.
+
+The supported API calls are:
+
+
+
+## GET /api/v1/playernames
+Get a list of all players that are currently online on the server
+
+:::tip[**Example** Response]
+```json
+[
+    {
+        "ID": "c888eef5-edb7-4ceb-bbf3-987731de9747",
+        "NAME": "Jonas_Jones"
+    }
+]
+```
+:::
+
+| Parameter | Type   | Description                  |
+| --------- | ------ | ---------------------------- |
+| ID        | String | The UUID of the player       |
+| NAME      | String | The name of the player       |
+
+:::note
+
+Versions \<`v0.3.0` returns an additional `LEGACY` field or every player that states whether or not the account is a legacy account or not. Since mc 1.20.2 and the mod release 0.3.1 this was removed due to the end of the account migration period, where all legacy accounts were migrated to microsoft accounts. (This property is now always false and thus redundant)
+
+:::
+
+## GET /api/v1/defaultgamemode
+Get the default gamemode of the server
+
+:::tip[**Example** Response]
+```json
+["SURVIVAL"]
+```
+:::
+All possible values are: `SURVIVAL`, `CREATIVE`, `SPECTATOR`
+
+## GET /api/v1/favicon
+Get the favicon of the server
+
+:::tip[**Example** Response]
+The Response is a png image as a base64 encoded string
+:::
+
+## GET /api/v1/serverport
+Get the port of the server
+
+:::tip[**Example** Response]
+```json
+["25565"]
+```
+:::
+
+## GET /api/v1/loaderversion
+Get the version of the loader
+
+:::tip[**Example** Response]
+```json
+["0.14.22"]
+```
+:::
+
+## GET /api/v1/minecraftversion
+Get the version of the minecraft server
+
+:::tip[**Example** Response]
+```json
+["1.18.1"]
+```
+:::
+
+## GET /api/v1/motd
+Get the motd of the server
+
+:::tip[**Example** Response]
+```json
+["A Minecraft Server"]
+```
+:::
+
+## GET /api/v1/maxplayercount
+Get the max player count of the server
+
+:::tip[**Example** Response]
+```json
+["20"]
+```
+:::
+
+## GET /api/v1/servermetadata
+Get the metadata of the server
+
+:::tip[**Example** Response]
+```json
+{
+    "DESCRIPTION": "A Minecraft Server",
+    "PLAYERS": {
+        "MAX": 20,
+        "ONLINE": 1,
+        "PLAYERS": [
+            {
+                "ID": "c888eef5-edb7-4ceb-bbf3-987731de9747",
+                "NAME": "Jonas_Jones"
+            }
+        ]
+    },
+    "VERSION": {
+        "version": "1.18.1",
+        "protocol": 755
+    },
+    "FAVICON": "/api/v1/favicon",
+    "SECURE_CHAT_ENFORCED": false,
+}
+```
+:::
+
+| Parameter            | Type   | Description                             |
+| -------------------- | ------ | --------------------------------------- |
+| DESCRIPTION          | String | The description of the server           |
+| MAX                  | Number | The max player count of the server      |
+| ONLINE               | Number | The current player count of the server  |
+| ID                   | String | The UUID of the player                  |
+| NAME                 | String | The name of the player                  |
+| version              | String | The version of the server               |
+| protocol             | Number | The protocol of the server              |
+| FAVICON              | String | The path to the favicon                 |
+| SECURE_CHAT_ENFORCED | Boolean | Whether or not secure chat is enforced |
+
+
+:::note
+
+Versions \<`v0.3.0` returns an additional `LEGACY` field or every player that states whether or not the account is a legacy account or not. Since mc 1.20.2 and the mod release 0.3.1 this was removed due to the end of the account migration period, where all legacy accounts were migrated to microsoft accounts. (This property is now always false and thus redundant)
+
+:::
+
+## GET /api/v1/servername
+Get the name of the server
+
+:::tip[**Example** Response]
+```json
+["A Minecraft Server"]
+```
+:::
+
+## GET /api/v1/currentplayercount
+Get the current player count of the server
+
+:::tip[**Example** Response]
+```json
+["1"]
+```
+:::
+
+## GET /api/v1/serverip
+Get the ip of the server
+
+:::tip[**Example** Response]
+```json
+["0.0.0.0"]
+```
+:::
+
+## GET /api/v1/ticks
+Get the current tick of the server
+
+:::tip[**Example** Response]
+```json
+["20456"]
+```
+:::
+
+## GET /api/v1/ticktime
+Get the time of the current tick of the server
+
+:::tip[**Example** Response]
+```json
+["0.1235235"]
+```
+:::
+
+## GET /api/v1/timereference
+Get the time reference of the server
+
+:::tip[**Example** Response]
+```json
+["20"]
+```
+:::
+
+## GET /api/v1/getall
+Get all information about the server
+
+:::tip[**Example** Response]
+```json
+{
+    "SERVER_IP": "0.0.0.0",
+    "SERVER_PORT": 25565,
+    "SERVER_NAME": "A Minecraft Server",
+    "DEFAULT_GAME_MODE": "SURVIVAL",
+    "LOADER_VERSION": "0.14.22",
+    "METADATA": {
+        "DESCRIPTION": "A Minecraft Server",
+        "PLAYERS": {
+            "MAX": 20,
+            "ONLINE": 1,
+            "PLAYERS": [
+                {
+                    "ID": "c888eef5-edb7-4ceb-bbf3-987731de9747",
+                    "NAME": "Jonas_Jones"
+                }
+            ]
+        },
+        "VERSION": {
+            "version": "1.18.1",
+            "protocol": 755
+        },
+        "FAVICON": "/api/v1/favicon",
+        "SECURE_CHAT_ENFORCED": false,
+    },
+    "TICKS": 20456,
+    "TICK_TIME": 0.1235235,
+    "TIME_REFERENCE": 20
+}
+```
+:::
+
+| Parameter            | Type    | Description                                |
+| -------------------- | ------- | ------------------------------------------ |
+| SERVER_IP            | String  | The ip of the server                       |
+| SERVER_PORT          | Number  | The port of the server                     |
+| SERVER_NAME          | String  | The name of the server                     |
+| DEFAULT_GAME_MODE    | String  | The default gamemode of the server         |
+| LOADER_VERSION       | String  | The version of the loader                  |
+| DESCRIPTION          | String  | The description of the server              |
+| MAX                  | Number  | The max player count of the server         |
+| ONLINE               | Number  | The current player count of the server     |
+| ID                   | String  | The UUID of the player                     |
+| NAME                 | String  | The name of the player                     |
+| version              | String  | The version of the server                  |
+| protocol             | Number  | The protocol of the server                 |
+| FAVICON              | String  | The path to the favicon                    |
+| SECURE_CHAT_ENFORCED | Boolean | Whether or not secure chat is enforced     |
+| TICKS                | Number  | The current tick of the server             |
+| TICK_TIME            | Number  | The time of the current tick of the server |
+| TIME_REFERENCE       | Number  | The time reference of the server           |
+
+:::note
+
+Versions \<`v0.3.0` returns an additional `LEGACY` field or every player that states whether or not the account is a legacy account or not. Since mc 1.20.2 and the mod release 0.3.1 this was removed due to the end of the account migration period, where all legacy accounts were migrated to microsoft accounts. (This property is now always false and thus redundant)
+
+:::
