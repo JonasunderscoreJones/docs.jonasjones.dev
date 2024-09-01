@@ -1,0 +1,29 @@
+---
+sidebar_position: 2
+---
+
+# Config Files
+
+BetterConsoleMC has two config files
+
+## betterconsolemc-config.properties
+
+```properties title="config/betterconsolemc-config.properties"
+bettercmd.enable = true
+```
+| Config Key       | Description              | Default |
+| ---------------- | ------------------------ | ------- |
+| bettercmd.enable | Enables/Disables the mod | true    |
+
+
+## betterconsolemc-commands_config.properties
+
+```ini title="config/betterconsolemc-commands_config.properties"
+[Command Mode] [Permissione Level] [Execution Timeout] [Broadcast To OP] [Ingame Command name] [command To execute]
+```
+
+:::note
+
+If an error occurs while parsing the commands and/or there is a syntax error, the mod will automatically be disabled to prevent unwanted behavior and bad commands.
+
+:::

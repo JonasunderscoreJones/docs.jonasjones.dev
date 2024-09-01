@@ -1,0 +1,144 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Example Commands
+
+Find a few examples of commands for Linux and Windows systems below.
+
+:::info[INFO: MacOS Support]
+
+The mod is also supported on MacOS but the commands are not provided here. The commands for MacOS are similar to the Linux commands but have to be adjusted. E.g. the `systemctl` command is not available on MacOS and can be replaced with the `launchctl` command.
+
+:::
+
+:::warning
+
+These commands are examples and should be used with caution. They are not meant to be used as is, but rather as a starting point for your own commands.
+
+:::
+
+
+## Linux
+
+### Restart Server
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true restart "sudo systemctl restart minecraft-server.service"
+```
+
+This creates a command `/restart` that automatically restarts a minecraft server using the `systemctl` utility. This requires a setup of the service file in `/etc/systemd/system/`
+
+Example system service file:
+```ini title="/etc/systemd/system/minecraft-server.service"
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+User=minecraft
+WorkingDirectory=/home/minecraft/server
+ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Update System Packages
+:::danger
+
+This command is a security risk and should not be used on public servers or servers where you don't trust the operators.
+In Addition running a server with sudo privileges is a security risk in itself and should be avoided at all costs.
+
+:::
+<Tabs>
+    <TabItem value="apt" label="apt">
+```ìni title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "sudo apt update && sudo apt upgrade --force-yes"
+```
+    </TabItem>
+    <TabItem value="pacman" label="pacman">
+```ìni title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "sudo pacman -Syu --noconfirm"
+```
+    </TabItem>
+    <TabItem value="yum" label="yum">
+```ìni title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "sudo yum update -y"
+```
+    </TabItem>
+    <TabItem value="dnf" label="dnf">
+```ìni title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "sudo dnf update -y"
+```
+    </TabItem>
+</Tabs>
+This creates a command `/update` that automatically updates a linux system. The command is only available to operators, will, at no point, be terminated and can therefore finish with no time limit. This aproach requires the server to be ran with elevated permissions (sudo)
+
+An Example of a system service file for a minecraft server running on linux can be found in the [Restart Server](#restart-server-linux) section.
+
+### Launch Second Minecraft server
+
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 1 300 true start-server "sudo systemctl start minecraft-server.service"
+```
+This creates a command `/start-server` that automatically starts a minecraft server using the `systemctl` utility. This requires a setup of the service file in `/etc/systemd/system/`. An example of a service file can be found in the [Restart Server](#restart-server) section.
+
+
+## Windows
+
+### Restart Server {#restart-server-windows}
+
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true restart "powershell.exe -Command Restart-Service -Name 'minecraft-server'"
+```
+
+This creates a command `/restart` that automatically restarts a minecraft server using the `Restart-Service` command in PowerShell. This requires the server to be ran with elevated permissions (Run as Administrator).
+
+Example of a PowerShell script to create a service:
+```powershell title="create-service.ps1"
+$serviceName = "minecraft-server"
+$servicePath = "C:\path\to\minecraft_server.jar"
+$serviceArgs = "-Xmx1024M -Xms1024M -jar minecraft_server.jar nogui"
+$serviceUser
+$servicePassword
+
+New-Service -Name $serviceName -BinaryPathName "C:\path\to\java.exe $serviceArgs" -DisplayName $serviceName -StartupType Automatic
+```
+The above commands can be saved to a file `create-service.ps1` and executed using the following command or executed directly in a PowerShell terminal.
+```powershell
+powershell.exe -File create-service.ps1
+```
+
+### Update System Packages {#update-windows}
+:::danger
+
+This command is a security risk and should not be used on public servers or servers where you don't trust the operators.
+In Addition running a server with elevated permissions is a security risk in itself and should be avoided at all costs.
+
+:::
+
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "powershell.exe -Command 'Get-WindowsUpdate -Install -AcceptAll'"
+```
+Or to update applications with the `winget` command line tool:
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 4 0 true update "winget upgrade --all"
+```
+
+This creates a command `/update` that automatically updates a windows system. The command is only available to operators, will, at no point, be terminated and can therefore finish with no time limit. This aproach requires the server to be ran with elevated permissions (Run as Administrator)
+
+
+### Launch Second Minecraft server {#start-server-windows}
+
+```ini title="config/betterconsolemc-commands_config.properties"
+SIMPLE 1 300 true start-server "powershell.exe -Command Start-Service -Name 'minecraft-server'"
+```
+
+This creates a command `/start-server` that automatically starts a minecraft server using the `Start-Service` command in PowerShell. This requires the server to be ran with elevated permissions (Run as Administrator).
+
+An example of a PowerShell script to create a service can be found in the [Restart Server](#restart-server-windows) section.

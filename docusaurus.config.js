@@ -55,7 +55,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       prism: {
-        additionalLanguages: ['properties', 'ini'],
+        additionalLanguages: ['properties', 'ini', 'powershell', 'bash', 'yaml'],
       },
       colorMode: {
         defaultMode: 'dark',

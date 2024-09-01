@@ -1,0 +1,10 @@
+{
+    "position": 3,
+    "label": "BetterConsoleMC",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "Documentation for the BetterConsoleMC mod"
+    }
+  }
