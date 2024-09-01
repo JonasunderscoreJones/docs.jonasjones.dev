@@ -1,0 +1,22 @@
+---
+sidebar_position: 3
+---
+
+# Config File
+The default comfing file
+
+```properties title="config/mcwebserver.properties"
+web.isEnabled=false #whether or not the webserver should be enabled or not | default: false
+web.port=8080 #The port of the webserver | default: 8080
+web.root=webserver/ #the root directory of the webserver, starting from the main server directory | default: webserver/
+web.file.root=index.html #the name of the html file for the homepage | default: index.html
+web.file.404=404.html #the name of the html file for 404 page | default: 404.html
+web.require_token=false #wether or not you are required to provide a token to access files on the webserver | default: false
+web.api=true #whether or not the webserver api should be enabled or not | default: true
+web.api.adv=true #whether or not the api should expose information such as player coordinates and inventory | default: true
+web.file.notSupported=not_supported.html #the name of the html file for 'not supported' page | default: not_supported.html
+logger.verbose=true #whether or not to log verbose output | default: true
+web.php=false # enable php | default: false
+```
+
+For more infos about PHP support, visit the [PHP Support](phpsupport) page.

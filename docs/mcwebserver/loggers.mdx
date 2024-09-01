@@ -1,0 +1,24 @@
+---
+sidebar_position: 6
+---
+
+# Loggers
+McWebserver has two different loggers: Default and Verbose.
+
+## Default Logger
+
+This loggers is always enabled and logs the most important stuff such as:
+
+- Mod initialized
+- Webserver enabled/disabled
+- API enabled/disabled
+- Webserver starting/stopping
+- Webserver started/stopped
+- Internal server errors while handling requests (this means only error code `500`)
+
+## Verbose Logger
+
+This logger is disabled by default. It logs:
+
+- Every request made to the webserver
+

@@ -1,0 +1,61 @@
+---
+sidebar_position: 7
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# PHP Support
+
+:::note
+
+Additional software is required to run PHP scripts on your server. This is not included in the default installation.
+
+:::
+
+McWebserver supports PHP. This means you can run PHP scripts on your server.
+
+To enable PHP support, set `web.php` to `true` in the `mcwebserver.properties` file.
+
+```properties title="config/mcwebserver.properties"
+web.php=true # enable php | default: false
+```
+
+After enabling PHP support, you can create PHP files in the `webserver` directory. These files will be executed by the PHP interpreter.
+
+To install the php interpreter, you can use the following command:
+<Tabs>
+    <TabItem value="Linux" label="Linux">
+        <Tabs>
+            <TabItem value="apt" label="apt">
+```bash
+sudo apt install php
+```
+            </TabItem>
+            <TabItem value="yum" label="yum">
+```bash
+sudo yum install php
+```
+            </TabItem>
+            <TabItem value="pacman" label="pacman">
+```bash
+sudo pacman -S php
+```
+            </TabItem>
+            <TabItem value="dnf" label="dnf">
+```bash
+sudo dnf install php
+```
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="Windows" label="Windows">
+        Download the PHP installer from the official website and follow the installation instructions.
+    </TabItem>
+</Tabs>
+
+:::info
+
+Make sure the php executable is in your PATH. To check if PHP is installed correctly, run `php -v` in your terminal.
+
+:::
