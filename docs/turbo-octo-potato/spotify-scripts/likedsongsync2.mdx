@@ -1,0 +1,33 @@
+# Liked Song Sync
+View this script on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/spotify_scripts/likedsongsync2.py)
+
+The script does two things with your liked songs on spotify:
+- Adds them to a playlist that can be made public and displayed on your profile (unlike the default liked songs playlist)
+- Syncs the liked songs to your [Last.fm](https://www.last.fm/) account
+
+## Setup
+The script requires a few environment variables to be set. For this, populate the `.env` file with the following variables:
+```properties title="../.env"
+SPOTIFY_CLIENT_ID=[your spotify client ID]
+SPOTIFY_CLIENT_SECRET=[your spotify client secret]
+SPOTIFY_REDIRECT_URI=[your spotifiy redirect URI]
+SPOTIFY_USER_ID=[your spotify user id]
+LASTFM_API_KEY=[your last.fm API key]
+LASTFM_API_SECRET=[your last.fm API secret]
+LASTFM_USERNAME=[your last.fm username]
+LASTFM_PASSWORD_HASH=[your last.fm password hash (use an online hasher to hash the password)]
+LIKEDSONGPLAYLIST_ID=[your spotify playlist ID (create this playlist beforehand)]
+```
+For more info on how to get the `client id`, `client secret` and `redirect uri` visit the [Spotify API Docs](https://developer.spotify.com/documentation/web-api#getting-started) for creating an app
+
+For more info on how to get the `API key` and `API secret` visit the [Last.fm API Docs](https://www.last.fm/api/authentication) for applying for a key.
+
+## Usage
+Inside the repository directory run the script by executing:
+```bash
+python spotify_scripts/likedsongsync2.py [commandline arguments]
+```
+The script has the following commandline arguments:
+- Verbose Logging (`--verbose` or `-v`): This will print out more information about what the script is doing
+- Force Resync: (`--force-all` or `-f`): This will force the script to resync all liked songs to Last.fm, even if they have been synced before. By default the script will only sync new liked songs.
+- Skip Song Sync: (`--skip-sync` or `-s`): This will skip the syncing of a specific song.

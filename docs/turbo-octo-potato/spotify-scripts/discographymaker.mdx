@@ -1,0 +1,58 @@
+# Discography Maker
+View this script on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/spotify_scripts/discographymaker.py)
+
+This script fetches all songs of all albums/EP's/Singles of the artists you choose and puts them in chronological order into a playlist.
+
+## Setup
+The script requires a few environment variables to be set. For this, populate the `.env` file with the following variables:
+```properties title="../.env"
+SPOTIFY_CLIENT_ID=[your spotify client ID]
+SPOTIFY_CLIENT_SECRET=[your spotify client secret]
+SPOTIFY_REDIRECT_URI=[your spotifiy redirect URI]
+SPOTIFY_USER_ID=[your spotify user id]
+```
+For more info on how to get the `client id`, `cliene secret` and `redirect uri` visit the [Spotify API Docs](https://developer.spotify.com/documentation/web-api#getting-started) for creating an app
+
+## Usage
+Inside the repository directory run the script by executing:
+```bash
+python spotify_scripts/discographymaker.py
+```
+You will be asked to enter the names (one at a time) of the artists You would like to be in a new discography playlist.
+```bash
+Authenticating...
+Authenticated!
+Input your first Artist (name, spotify ID or artist link). Enter other's when prompted next:
+```
+If Your input matches the found artist's name perfectly, then You won't have to confirm it:
+```bash
+Input your first Artist (name, spotify ID or artist link). Enter other's when prompted next:
+ATEEZ
+Looking up Artist...
+======================
+Input your next Artist (name or Spotify ID). Leave empty if all have been inputed
+```
+If the found artist's name differs, You will be asked for comfirmation:
+```bash
+Input your next Artist (name or Spotify ID). Leave empty if all have been inputed
+ateez
+Looking up Artist...
+ The Artist doesn't exist on Spotify. Did you mean "ATEEZ" [ENTER for Yes, No for retry]:
+```
+In case it found a different artist, You can choose to retry the search.
+
+Alternatively the scripts also allows inputs for the artist link or ID.
+
+:::note
+
+The spotify search by name feature isn't always that accurate so pasting the direct artist link or ID into the input is sometimes the only option.
+
+:::
+
+:::info
+
+Because of a bug in the Spotify API, if an artist has more than 50 albums/EP's/Singles, the script will only fetch the first 50.
+
+I am unable to fix this since it's a bug on Spotify's end and has existed for quite a while :/
+
+:::

@@ -1,0 +1,26 @@
+# r/kpop Comebacks Fetcher
+View this script on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/rpopfetch.py)
+
+This script fetches the K-Pop comebacks (new releases) data from the `r/kpop` subreddit wiki and converts it to json code. It also has an option to upload the json file using `rclone`
+
+## Setup
+The script requires a few environment variables to be set. For this, populate the `.env` file with the following variables:
+```properties title="../.env"
+REDDIT_CLIENT_ID=[your reddit client ID]
+REDDIT_CLIENT_SECRET=[your reddit client secret]
+REDDIT_USER_AGENT=[your reddit user agent]
+```
+For more info on how to get the `client id` and `client secret` go to the [Reddit API Docs](https://www.reddit.com/prefs/apps)
+
+## Usage
+Inside the repository directory run the script by executing:
+```bash
+python rpopfetch.py [commandline arguments]
+```
+
+The script will output a json file with the data in the same directory as the script.
+
+You will also have the option to add commandline arguments:
+- Verbose Logging (`--verbose` or `-v`): This will print out more information about what the script is doing
+- Upload to rclone (`--upload` or `-u`): This will upload the json file to the specified rclone remote and path. The remote and path are specified in the script itself.
+

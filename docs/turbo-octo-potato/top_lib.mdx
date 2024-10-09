@@ -1,0 +1,410 @@
+# TOP Python Library
+Visit the code on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/top_lib.py)
+
+This is the library that holds the following code:
+- [Spotify and Last.fm Authentication](#spotify-and-lastfm-authentication)
+- [Spotify API manager and helper](#spotify-manager)
+- Progressbar code e.g. for the [likedsongsync2.py](/turbo-octo-potato/spotify-scripts/likedsongsync2) script
+
+## Credentials and Setup
+
+The library makes use of the following environment variables defined in the `.env` file:
+```properties
+LASTFM_API_KEY = "lastfm_api_key"
+LASTFM_API_SECRET = "lastfm_api_secret"
+LASTFM_USERNAME = "lastfm_username"
+LASTFM_PASSWORD_HASH = "lastfm_password_hash"
+
+SPOTIFY_CLIENT_ID = "spotify_client_id"
+SPOTIFY_CLIENT_SECRET = "spotify_client_secret"
+SPOTIFY_REDIRECT_URI = "http://localhost:6969"
+SPOTIFY_USER_ID = "spotify_user_id"
+
+LIKEDSONGPLAYLIST_ID = "spotify_playlist_id"
+SOMEPLAYLIST_ID = "spotify_playlist_id"
+INTROOUTROPLAYLIST_ID = "spotify_playlist_id"
+RANDOMTESTPLAYLIST_ID = "spotify_playlist_id"
+
+GITHUB_API_TOKEN = "github_api_token"
+
+REDDIT_CLIENT_ID = "reddit_client_id"
+REDDIT_CLIENT_SECRET = "reddit_client_secret"
+REDDIT_USER_AGENT = "reddit_user_agent"
+
+DISCORD_WEBHOOK_URL = 'discord_webhook_url'
+```
+:::info[Note]
+
+Depending on what you want to use the library for, you might not need all of these environment variables.
+
+:::
+
+## Spotify and Last.fm Authentication
+The library has a class called `Auth` that handles the authentication for both Spotify and Last.fm.
+
+### Creating an Authentication Instance
+A new authentication instance can be created by calling the class with the following arguments:
+
+```python
+my_auth = Auth(
+    verbose:bool,
+    lastfm_network:pylast.LastFMNetwork,
+    spotify:spotipy.Spotify,
+)
+```
+- `verbose` is an _optional_ boolean that determines if the authentication process should print out more information.
+- `lastfm_network` and `spotify` are _optional_ arguments that can be provided if the authentication for those services has already been done.
+
+:::tip[Example]
+
+Therefore if we don't have the authentication for Last.fm and Spotify yet and we want verbose logging enabled, we can create a new instance like this:
+
+```python
+my_auth = Auth(
+    verbose=True
+)
+```
+
+:::
+
+### Authenticate Spotify
+Our newly created authentication instance can be used to authenticate Spotify by calling the `newSpotifyauth()` method:
+
+```python
+my_auth.newSpotifyauth(
+    scope:str
+)
+```
+- `scope` is a _required_ string that defines the permissions the Spotify API should have. For more information on the scopes visit the [Spotify API Docs](https://developer.spotify.com/documentation/general/guides/scopes/)
+
+This automates the authentication process as much as possible. On first launch, the user is still required to authorize the script to access the spotify API.
+
+### Authenticate Last.fm
+Much like the spotify instance, we can authenticate Last.fm by calling the `newLastfmauth()` method:
+
+```python
+my_auth.newLastfmauth()
+```
+
+This will open a browser window where the user can authorize the script to access their Last.fm account on first launch.
+
+### Verbose Logging
+If verbose logging was enabled when creating the instance, the authentication process will print out more information about what it's doing.
+
+Verbose logging can be toggled at any time using the `verbose()` method:
+
+```python
+my_auth.verbose(
+    verbose:bool
+)
+```
+- `verbose` is a _required_ boolean that determines if the authentication process should print out more information.
+
+### Getting the Spotify and Last.fm Instances
+After the authentication process has been completed, the Spotify and Last.fm instances can be accessed using the `getSpotify()` and `getLastfm()` methods although there are a bunch of helper and automatioon functions in the library that dont require you to get the instances manually e.g. using the [Spotify Manager](#spotify-manager) class.:
+
+```python
+spotify_instance = my_auth.getSpotify()
+
+lastfm_instance = my_auth.getLastfm()
+```
+
+### Get the used Credentials
+The credentials used for the authentication can be accessed using the `getCredentials()` method:
+
+```python
+credentials = my_auth.getCredentials()
+```
+
+the credentials are stored in a dictionary with the following keys:
+- `LASTFM_API_KEY`
+- `LASTFM_API_SECRET`
+- `LASTFM_USERNAME`
+- `LASTFM_PASSWORD_HASH`
+- `SPOTIFY_CLIENT_ID`
+- `SPOTIFY_CLIENT_SECRET`
+- `SPOTIFY_REDIRECT_URI`
+- `SPOTIFY_USER_ID`
+
+The keys are self-explanatory and contain the credentials used for the authentication.
+
+
+## Spotify Manager
+The library has a class called `SpotifyManager` that helps with managing more complex interactions with the Spotify API.
+
+### Creating a Spotify Manager Instance
+A new Spotify Manager instance can be created by calling the class with the following arguments:
+
+```python
+my_spotify_manager = SpotifyManager(
+    spotify:spotipy.Spotify
+)
+```
+:::tip[Example]
+
+We can plug in the newly created authenticated Spotify instance from above like this:
+
+```python
+my_spotify_manager = SpotifyManager(
+    auth.getSpotify()
+)
+```
+:::
+
+### Get an artist's Albums
+The `fetchArtistAlbums()` method can be used to get all the albums of a specific artist:
+
+```python
+albums = my_spotify_manager.fetchArtistAlbums(
+    artist:str,
+    raise_error:bool
+)
+```
+- `artist` is the artist_id of the artist we want to get the albums from.
+- `raise_error` is an _optional_ boolean that determines if the method should raise an error if the artist has more than 50 albums/EP's/Singles.
+
+:::info
+
+The Spotify API has a bug where it only fetches the first 50 albums/EP's/Singles of an artist if they have more than 50. This is a bug on Spotify's end and has existed for quite a while.
+
+:::
+
+### Get an Album's Tracks
+The `getTrackUrisFromAlbum()` method can be used to get all the tracks of a specific album:
+
+```python
+tracks = my_spotify_manager.getTrackUrisFromAlbum(
+    album:str
+)
+```
+- `album` is the album_id of the album we want to get the tracks from.
+
+The method returns a list of track uris that can be used to add the tracks to a playlist.
+
+:::tip[Example]
+
+You can also lookup the name or other info about a track.
+
+In this example, let's get the tracks of the album "The Story of Light" by SHINee and print the name of the first track:
+
+```python
+# Get the album's tracks
+tracks = my_spotify_manager.getTrackUrisFromAlbum(
+    "spotify:album:1zK5C9xg5Fz3J0bG6VwQFv"
+)
+
+# Get the Spotify instance
+spotify = auth.getSpotify()
+
+# Get the first track
+track = spotify.track(tracks[0])
+
+# Print the track's name
+print(track["name"])
+```
+:::
+
+### Get a user's followed Artists
+The `fetchUserFollowedArtists()` method can be used to get all the artists a user follows:
+
+```python
+artists = my_spotify_manager.fetchUserFollowedArtists()
+```
+The method returns the artist ids and names of all followed artists as tuples in a list:
+
+```python
+[
+    ("spotify:artist:1dfeR4HaWDbWqFHLkxsg1d", "SHINee"),
+    ("spotify:artist:0C8C8YiEiJqfI5fSG5Z6Y2", "ATEEZ"),
+    ...
+]
+```
+
+
+## Progressbar
+The library has a class called `Progressbar` that helps with creating progress bars for scripts that take a long time to run.
+
+### Creating a Progressbar Instance
+A new Progressbar instance can be created by calling the class with the following arguments:
+
+```python
+my_progressbar = Progressbar(
+    total:int,
+    etaCalc: : Callable[[int, int], int]
+)
+```
+- `total` is the total number of steps the progress bar should have.
+- `etaCalc` is an _optional_ function that calculates the estimated time of completion for the progress bar.
+
+:::tip[Example]
+Let's create a new progress bar with 100 steps and a simple ETA calculation function:
+
+```python
+# the eta_calculator function takes a current step and the total number of steps and returns an estimated time of completion in seconds
+def eta_calculator(current:int, total:int) -> int:
+    return (total - current) * 0.1 # simple calculator that estimates 0.1 seconds per step
+
+my_progressbar = Progressbar(
+    100,
+    eta_calculator
+)
+```
+:::
+
+The total number of steps can be updated at any time using the `setTotal()` method:
+
+```python
+my_progressbar.setTotal(
+    total:int
+)
+```
+- `total` is the new total number of steps the progress bar should have.
+
+### Manual ETA Calculation
+If no `etaCalc` function is provided when creating the instance, the estimated time of completion can be set manually using the `setEta()` method:
+
+```python
+my_progressbar.setEta(
+    eta:int
+)
+```
+
+### Display the Progressbar
+The progress bar can be displayed using the `print()` method:
+
+```python
+my_progressbar.print(
+    current:int,
+    eta:int
+)
+```
+- `current` is the current step the progress bar is at.
+- `eta` is an optional overwrite of the estimated time of completion.
+
+If no `eta` is provided, the progress bar will use the `etaCalc` function to calculate the estimated time of completion. If no `etaCalc` function was provided when creating the instance, the progress bar will not display an estimated time of completion.
+
+### Build a Progressbar state
+In case the progressbar should be built already but not displayed yet, the `buildSnapshot()` method can be used:
+
+```python
+snapshot = my_progressbar.buildSnapshot(
+    current:int,
+    eta:int
+)
+```
+- `current` is the current step the progress bar is at.
+- `eta` is an optional overwrite of the estimated time of completion.
+
+The method returns a string that can be printed to display the progress bar.
+
+:::tip[Example]
+Let's build a snapshot of a progress bar with 100 steps and a current step of 50:
+
+```python
+snapshot = my_progressbar.buildSnapshot(
+    50
+)
+
+print(snapshot)
+```
+Now we can update the progress bar by printing the snapshot again with a new current step:
+
+```python
+snapshot = my_progressbar.buildSnapshot(
+    75
+)
+
+print(snapshot, end="\r")
+```
+We give the extra argument `end="\r"` to overwrite the current line in the console with the new progress bar. Otherwhise we end up with a new line for each progress bar update.
+
+This way we end up with a smooth progress bar that updates in place.
+:::
+
+### Progressbar Eta Manager
+The library also has a class called `ProgressbarEtaManager` that automatically estimates the time of completion for a progress bar.
+
+### Creating a Progressbar Eta Manager Instance
+A new Progressbar Eta Manager instance can be created by calling the class with the following arguments:
+
+```python
+my_eta_manager = ProgressbarEtaManager()
+```
+
+The Progress Bar Eta Manager works by saving the time taken by each step and calculating the average. This way, at each step we need to run the `now()` function to log another step.
+
+### Update the Progressbar Eta Manager
+The `now()` method can be used to log another step and update the estimated time of completion:
+
+```python
+my_eta_manager.now()
+```
+
+### Get the Average Step Time
+The average time taken per step can be accessed using the `getAvgEta()` method:
+
+```python
+avg_eta = my_eta_manager.getAvgEta()
+```
+
+To get the estimated time of completion for a specific number of steps, we can multiply the average step time by the number of steps:
+
+```python
+eta = avg_eta * steps
+```
+But the `Progressbar` class already does this for us, so we don't need to worry about it.
+
+### Get the logged Step times
+The logged step times can be accessed using the `getDurations()` method:
+
+```python
+durations = my_eta_manager.getDurations()
+```
+This returns a list of all the step times that have been logged in seconds.
+
+:::tip[Example]
+
+## Combine Progressbar and Progressbar Eta Manager
+To plug the `Progressbar` and `ProgressbarEtaManager` together, we can create new `Progressbar` and `ProgressbarEtaManager` instances:
+
+```python
+# Create a new Progressbar instance
+my_new_progressbar = Progressbar()
+
+# Set a total number of steps
+my_progressbar.setTotal(100)
+
+# Create a new Progressbar Eta Manager instance
+my_new_eta_manager = ProgressbarEtaManager()
+```
+
+Let's say we have a loop that runs 100 times and we want to display a progress bar with an estimated time of completion:
+
+```python
+# code from above
+...
+
+# Loop 100 times
+for i in range(100):
+    # Log a new step
+    my_new_eta_manager.now()
+
+    # simulate some work
+    time.sleep(math.random(0, 1, 0.1))
+
+    # Get the estimated time of completion
+    eta = my_new_eta_manager.getAvgEta() * (100 - i)
+
+    # Print the progress bar
+    my_new_progressbar.print(i + 1, eta)
+```
+
+This way we can display a progress bar with an estimated time of completion that updates in place.
+
+The randomly generated delay between `0` and `1` seconds allows us to test the ETA calculation.
+
+:::
+
+
+
+

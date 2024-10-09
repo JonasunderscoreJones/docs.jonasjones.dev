@@ -1,0 +1,22 @@
+# Steam Achievement Completion
+View this script on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/steam_achievement_completion.py)
+
+This script gathers the achievement completion rate of each game of your steam library and outputs the average game completion rate.
+
+## Setup
+1. Install the required packages by running:
+```bash
+pip install requests os dotenv
+```
+2. Create a `.env` file in the same directory as the script and add the following:
+```properties
+STEAM_API_KEY=YOUR_API_KEY
+STEAM_USER_ID=YOUR_STEAM_ID
+```
+Go to [Steam API](https://steamcommunity.com/dev/apikey) to get your API key and find your Steam ID by going to your profile and copying the number at the end of the URL.
+
+## Usage
+Run the script by executing:
+```bash
+python steam_achievement_completion.py
+```

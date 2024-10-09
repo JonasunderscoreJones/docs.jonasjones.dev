@@ -1,0 +1,31 @@
+# Intro Outro Playlist Maker
+View this script on [GitHub](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/spotify_scripts/intro_outro_maker.py)
+
+The script fetches all intro's and outro's from all artists You follow on spotify and puts them into a playlist.
+
+## Setup
+The script requires a few environment variables to be set. For this, populate the `.env` file with the following variables:
+```properties title="../.env"
+SPOTIFY_CLIENT_ID=[your spotify client ID]
+SPOTIFY_CLIENT_SECRET=[your spotify client secret]
+SPOTIFY_REDIRECT_URI=[your spotifiy redirect URI]
+SPOTIFY_USER_ID=[your spotify user id]
+INTROOUTROPLAYLIST_ID=[your spotify playlist ID (create this playlist beforehand)]
+```
+For more info on how to get the `client id`, `client secret` and `redirect uri` visit the [Spotify API Docs](https://developer.spotify.com/documentation/web-api#getting-started) for creating an app
+
+## Usage
+Inside the repository directory run the script by executing:
+```bash
+python spotify_scripts/intro_outro_maker.py
+```
+
+:::warning
+
+This script has the potential to get your account temporarily rate limited by Spotify.
+
+In case of a ratelimit, the script will crash. Depending on how many artists you follow, the script might crash before finishing.
+
+Rate limits are not to worry about, they are temporary and will be lifted after an hour at most.
+
+:::
