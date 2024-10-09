@@ -1,0 +1,226 @@
+---
+slug: /tabletop_achievement_scripts
+---
+
+# Tabletop Simulator Achievement Scripts
+Tabletop Simulator has a few very tedious achievements that I decided to automate with simple python scripts. The scripts are available in my script-dump-repo on [Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/tree/main/tabletop_achievements).
+
+## Supported Achievements
+- **[Treasure Trove](#treasure-trove)**: Save 100 items to your chest
+- **[Rage Quit](#rage-quit)**: Flip the table over 100 times
+- **[Ultimate Rage](#ultimate-rage)**: Flip the table over 1000 times
+- **[Color me pretty](#color-me-pretty)**: Tint 1000 objects in a different color
+- *Tips for:* **[Don't Touch](#dont-touch)**: Lock 1000 objects over time
+
+## Treasure Trove
+View the script on [Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/tabletop_achievements/tabletop_savetochest_loop.py).
+
+This script will save 100 items to your chest which can all be deleted once the achievement is acquired. It will save the same item over and over again under a different name - but that's enough!
+
+The script has the following parameters:
+```python title="tabletop_savetochest_loop.py"
+# The position of the right click to open the context menu for the object
+RIGHTCLICK_X = 1870
+RIGHTCLICK_Y = 675
+
+# The position of the "Save Object" option in the context menu
+SAVECONTEXTMENUCLICK_X = 2030
+SAVECONTEXTMENUCLICK_Y = 875
+
+# The position of the name input field in the "Save Object" poup
+NAMEFIELDCLICK_X = 1700
+NAMEFIELDCLICK_Y = 1110
+
+# The position of the save button in the "Save Object" popup
+SAVECLICK_X = 1770
+SAVECLICK_Y = 1200
+
+# The timeout for UI elements to load (in seconds)
+TIMEOUTTIME = 0.15
+
+...
+```
+
+### Acquiring values
+The parameters hold the values of the positions for the mous clicks on your screen. To acquire them, focus the game window and take full screen screenshots. Open the screenshots in an image editor and find the pixel coordinates of the positions you need.
+
+The preset values were acquired on a 3840x2160 (4k) screen with the game running in fullscreen mode but any other display resolution works, as long as you update the pixel coordinates. Create a new Singleplayer game and place any object on the table. Right click on the object and take notes of the pixel coordinates of the top left corner of the context menu as well as the `Save Object` option as follows (notice the green color as reference):
+
+![Treasure Trove context menu](/img/content/tabletop_achievements/tabletop_achievements_treasuretrove_1.png)
+
+Now click on the `Save Object` option and take another screenshot. This time, take notes of a pixel somewhere within the name input field and the `Save` button as follows:
+
+![Treasure Trove save object](/img/content/tabletop_achievements/tabletop_achievements_treasuretrove_2.png)
+
+The `TIMEOUTTIME` parameter is the time the script waits for the UI elements to load. If the script skips steps/is too fast, increase this value until it works. I found that 0.15 seconds worked for me on an `Intel i7-11800H` CPU with integrated graphics.
+
+:::info
+
+Once the screenshots are taken, dont move the camera, object or table in the game and keep your game window and settings the same. If not, you might have to retake the screenshots and update the pixel coordinates.
+
+:::
+
+### Running the script
+After replacing the values in the script with your own, you can start running the script with the following command:
+
+```bash
+python tabletop_savetochest_loop.py
+```
+
+The script will automatically stop after 100 itterations. This will take 60 seconds with the default timeout value of 0.15 seconds. The running time of the script with a custom timeout value is `100 * TIMEOUTTIME` seconds.
+
+:::note
+
+The steam achievements will only update once you return to the main menu.
+
+:::
+
+## Rage Quit
+View the script on [Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/tabletop_achievements/tabletop_fliptable_loop.py).
+
+This script will flip the table 100 times. It will do so by automatically clicking the required UI elements and buttons.
+
+The script has the following parameters:
+```python title="tabletop_fliptable_loop.py"
+# The position of the "Flip" button at the top of the screen
+FIRSTCLICK_X = 2300
+FIRSTCLICK_Y = 70
+
+# The timeout for UI elements to load (in seconds)
+INBETWEENSLEEPTIME = 0.2
+
+# The position of the "Yes" button of the "FLip table?" prompt
+SECONDCLICK_X = 1760
+SECONDCLICK_Y = 1140
+
+# The timeout set by the game until the "Flip" button becomes clickable again
+TIMEOUTSLEEPTIME = 2
+
+# The amount of iterations depending on the achievement
+ITERATIONS = 100
+
+...
+```
+
+### Acquiring values
+The parameters hold the values of the positions for the mous clicks on your screen. To acquire them, focus the game window and take full screen screenshots. Open the screenshots in an image editor and find the pixel coordinates of the positions you need.
+
+The preset values were acquired on a 3840x2160 (4k) screen with the game running in fullscreen mode but any other display resolution works, as long as you update the pixel coordinates. Create a new Singleplayer game and click on the "Flip" button at the top of the screen without confirming the poup, then take a screenshot. Take notes of the pixel coordinates of the `Flip` button as follows:
+
+![Rage Quit flip button](/img/content/tabletop_achievements/tabletop_achievements_fliptable_1.png)
+
+The `INBETWEENSLEEPTIME` parameter is the time the script waits between clicks. If the script skips steps/is too fast, increase this value until it works. I found that 0.2 seconds worked for me on an `Intel i7-11800H` CPU with integrated graphics.
+
+The `TIMEOUTSLEEPTIME` parameter is the time the script waits for the `Flip` button to become clickable again. This value is set by the game and should not be changed.
+
+The `ITERATIONS` parameter is the amount of times the script will flip the table. For the `Rage Quit` achievement, this value is set to 100, for the `Ultimate Rage` achievement, this value is set to 1000. Check it out at the [Ultimate Rage](#ultimate-rage) section.
+
+:::info
+
+Once the screenshots are taken, dont move the camera, object or table in the game and keep your game window and settings the same. If not, you might have to retake the screenshots and update the pixel coordinates.
+
+:::
+
+### Running the script
+After replacing the values in the script with your own, you can start running the script with the following command:
+
+```bash
+python tabletop_fliptable_loop.py
+```
+
+The script will automatically stop after 100 itterations. This will take 200 seconds with the default timeout value of 2 seconds. The running time of the script with a custom timeout value is `ITERATIONS * (TIMEOUTSLEEPTIME + INBETWEENSLEEPTIME)` seconds.
+
+:::note
+
+The steam achievements will only update once you return to the main menu.
+
+:::
+
+## Ultimate Rage
+This achievement makes use of the same script as the [Rage Quit](#rage-quit) achievement. The only difference is the amount of iterations. Follow the instructions of the [Rage Quit](#rage-quit) achievement to acquire the values and run the script. Change the `ITERATIONS` parameter to 1000 or 900 depending on whether or not you already got the previous achievement.
+
+## Color me pretty
+View the script on [Github](https://github.com/JonasunderscoreJones/turbo-octo-potato/blob/main/tabletop_achievements/tabletop_tint_loop.py).
+
+This script will tint 1000 objects in a different color. It will do so by automatically clicking the required UI elements and buttons.
+
+The script has the following parameters:
+```python title="tabletop_tint_loop.py"
+# The position of the right-click to open the context menu on an object
+RIGHTCLICK_X = 1890
+RIGHTCLICK_Y = 970
+
+# The position of the "Color Tint" button in the context menu
+FIRSTCLICK_X = 2055
+FIRSTCLICK_Y = 1225
+
+# The position of the upper left corner of the color-selector square
+SECONDCLICK_XMIN = 600
+SECONDCLICK_YMIN = 600
+
+# The position of the lower right corner of the color-selector square
+SECONDCLICK_XMAX = 1100
+SECONDCLICK_YMAX = 1100
+
+# The position of the "Apply" button of the color selector
+CONFIRMCLICK_X = 760
+CONFIRMCLICK_Y = 1550
+
+# The timeout for UI elements to load (in seconds)
+SLEEPTIME = 0.15
+
+...
+```
+
+### Acquiring values
+The parameters hold the values of the positions for the mous clicks on your screen. To acquire them, focus the game window and take full screen screenshots. Open the screenshots in an image editor and find the pixel coordinates of the positions you need.
+
+The preset values were acquired on a 3840x2160 (4k) screen with the game running in fullscreen mode but any other display resolution works, as long as you update the pixel coordinates. Create a new Singleplayer game, add an object and rightclick on it. Then click on the "Tint Color" button. Take notes of the pixel coordinates of the `Flip` button as follows:
+
+![Color me pretty context menu](/img/content/tabletop_achievements/tabletop_achievements_colortint_1.png)
+
+The `SLEEPTIME` parameter is the time the script waits between clicks. If the script skips steps/is too fast, increase this value until it works. I found that 0.15 seconds worked for me on an `Intel i7-11800H` CPU with integrated graphics.
+
+The `SECONDCLICK_XMIN`, `SECONDCLICK_YMIN`, `SECONDCLICK_XMAX` and `SECONDCLICK_YMAX` parameters are the pixel coordinates of the color selector square. The script will randomly select a color within this square. The `CONFIRMCLICK_X` and `CONFIRMCLICK_Y` parameters are the pixel coordinates of the `Apply` button of the color selector.
+
+:::note
+
+While it is technically possible that the script selects the same color twice, the chance is very low. After returning to the main menu and steam updating the achievement progress, you can see how many duplicates there were manually tint the reminaing yourself.
+
+:::
+
+:::info
+
+Once the screenshots are taken, dont move the camera, object or table in the game and keep your game window and settings the same. If not, you might have to retake the screenshots and update the pixel coordinates.
+
+:::
+
+### Running the script
+
+After replacing the values in the script with your own, you can start running the script with the following command:
+
+```bash
+python tabletop_tint_loop.py
+```
+
+The script will automatically stop after 1000 itterations. This will take about `7-8 minutes` with the default timeout value of 0.15 seconds. The running time of the script with a custom timeout value is `1000 * 3 * SLEEPTIME` seconds.
+
+:::note
+
+The steam achievements will only update once you return to the main menu.
+
+:::
+
+## Don't Touch
+The achievement doesn't require a script but only a simple autoclicker.
+
+Simply create a new Singleplayer game, add an object to it and rightclick it. Then, click on the "Toggles" option of the context menu and run the autoclicker on the "Locked" option. It worked fine at about `20ms` delay for me.
+
+This way it should be done after 6 minutes and 40 seconds.
+
+:::note
+
+The steam achievements will only update once you return to the main menu.
+
+:::
+

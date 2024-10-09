@@ -1,0 +1,10 @@
+{
+    "position": 7,
+    "label": "YetAnotherDiscordChatLink",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "Documentation for the YetAnotherDiscordChatLink mod"
+    }
+  }
