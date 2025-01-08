@@ -12,15 +12,6 @@ const config = {
   tagline: 'docs.jonasjones.dev',
   favicon: 'img/favicon.png',
 
-  plugins: [
-    [
-      require.resolve("@cmfcmf/docusaurus-search-local"),
-      {
-        indexBlog: false,
-      }
-    ]
-  ],
-
   // Set the production url of your site here
   url: 'https://docs.jonasjones.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
