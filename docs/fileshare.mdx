@@ -1,0 +1,28 @@
+---
+sidebar_position: 8
+slug: /fileshare.jonasjones.dev/
+---
+
+# Fileshare Service
+
+A simple cloudflare worker to upload and download files. This service is available at [fileshare.jonasjones.dev](https://fileshare.jonasjones.dev). The source code is available on [Github](https://github.com/JonasunderscoreJones/fileshare.jonasjones.dev).
+
+## Dashboard usage
+
+The dashboard allows for easy file upload, download and deletion. To upload and delete, a password is required. It is set with a cloudflare wrangler secret.
+
+### Upload
+
+Uploading is done by selecting a file by clicking on the `Browse` button, then selecting the checkbox for 7 day expiry or selecting a custom expiry date. After entering the password, the file can be uploaded.
+
+### Download
+
+Dowloading is as simple as clicking on the file ID in the list of files or clicking on a direct link you might have received.
+
+### Delete
+
+Deleting a file can be done by using the dropdown to select a file and entering the password. After clicking the `delete` button, the file will be removed from the server.
+
+## API usage
+
+
