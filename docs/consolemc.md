@@ -10,7 +10,7 @@ This mod allows You to execute shell commands (system commands) on the server's 
 
 :::danger
 
-This mod can be very dangerous on public servers and may only be used with caution. Anyone that is an operator on the server can do **ANYTHING** to the server and potentially all systems connected to the network.
+This mod can be very dangerous on public servers and should only be used with caution. Anyone that is an operator on the server can do **ANYTHING** to the server and potentially all systems connected to the network.
 
 USE AT YOUR OWN RISK!
 
