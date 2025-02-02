@@ -42,3 +42,36 @@ table {
   border-radius: 10px;
   border: 2px solid var(--custom-table-outline-color);
 }
+
+/* used for hiding Pages from sidebar such as the overviews pages */
+.hidden {
+  display: none !important;
+}
+
+/* themed link boxes */
+.page-content-flex-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.page-content-flex-box {
+    flex: 1;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px lightgray solid;
+    padding-bottom: 0;
+}
+.page-content-flex-box1 {
+    margin-left: 0;
+}
+.page-content-flex-box2 {
+    margin-right: 0;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .box {
+        flex: 1 1 100%;
+    }
+}

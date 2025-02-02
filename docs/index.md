@@ -33,35 +33,6 @@ Check out the sidebar or here, below:
   An Overview of all my Achievement Guides
   </div>
 </div>
-<style>
-{`
-    .page-content-flex-container {
-        display: flex;
-        width: 100%;
-        flex-wrap: wrap;
-    }
-    .page-content-flex-box {
-        flex: 1;
-        padding: 15px;
-        margin: 10px;
-        border-radius: 8px;
-        border: 1px lightgray solid;
-        padding-bottom: 0;
-    }
-    .page-content-flex-box1 {
-        margin-left: 0;
-    }
-    .page-content-flex-box2 {
-        margin-right: 0;
-    }
-
-    @media (max-width: 600px) {
-        .box {
-            flex: 1 1 100%;
-        }
-    }
-`}
-</style>
 <div className="page-content-flex-container">
   <div className="page-content-flex-box page-content-flex-box1">
   ### [3D Printables](/overview/3d-printables)
