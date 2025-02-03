@@ -1,5 +1,8 @@
 {
   "theme.ErrorPageContent.title": {
     "message": "Diese Seite ist abgestürzt."
+  },
+  "pages.content.index.subtitle": {
+    "message": "Irgendetwas spezifisches nachdem du suchst?"
   }
 }

@@ -440,5 +440,9 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "pages.content.index.subtitle": {
+    "message": "Anything specific you're looking for?",
+    "description": "Subtitle of the Index documentation page"
   }
 }
