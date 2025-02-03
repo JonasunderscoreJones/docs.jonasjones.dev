@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "DOCS.JONASJONES.DEV",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "docs.jonasjones.dev Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Homepage": {
+    "message": "Homepage",
+    "description": "Navbar item with label Homepage"
+  }
+}

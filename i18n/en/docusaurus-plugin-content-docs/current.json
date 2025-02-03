@@ -1,0 +1,82 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.overviews": {
+    "message": "overviews",
+    "description": "The label for category overviews in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.API.link.generated-index.description": {
+    "message": "The API is split into two parts, the Simple API and the Advanced API.",
+    "description": "The generated-index page description for category API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.v1 Routes": {
+    "message": "v1 Routes",
+    "description": "The label for category v1 Routes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.v1 Routes.link.generated-index.description": {
+    "message": "Documentation for the Jonas_Jones API v1 Routes",
+    "description": "The generated-index page description for category v1 Routes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.BetterConsoleMC": {
+    "message": "BetterConsoleMC",
+    "description": "The label for category BetterConsoleMC in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.BetterConsoleMC.link.generated-index.description": {
+    "message": "Documentation for the BetterConsoleMC mod",
+    "description": "The generated-index page description for category BetterConsoleMC in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.McWebServer": {
+    "message": "McWebServer",
+    "description": "The label for category McWebServer in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.McWebServer.link.generated-index.description": {
+    "message": "Documentation for the McWebServer mod",
+    "description": "The generated-index page description for category McWebServer in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Simple API": {
+    "message": "Simple API",
+    "description": "The label for category Simple API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Simple API.link.generated-index.description": {
+    "message": "The Simple API documentation.",
+    "description": "The generated-index page description for category Simple API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Advanced API": {
+    "message": "Advanced API",
+    "description": "The label for category Advanced API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Advanced API.link.generated-index.description": {
+    "message": "The Advanced API documentation.",
+    "description": "The generated-index page description for category Advanced API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.YetAnotherDiscordChatLink": {
+    "message": "YetAnotherDiscordChatLink",
+    "description": "The label for category YetAnotherDiscordChatLink in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.YetAnotherDiscordChatLink.link.generated-index.description": {
+    "message": "Documentation for the YetAnotherDiscordChatLink mod",
+    "description": "The generated-index page description for category YetAnotherDiscordChatLink in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Turbo Octo Potato": {
+    "message": "Turbo Octo Potato",
+    "description": "The label for category Turbo Octo Potato in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Turbo Octo Potato.link.generated-index.description": {
+    "message": "Documentation for my random script dump repository",
+    "description": "The generated-index page description for category Turbo Octo Potato in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Spotify Scripts": {
+    "message": "Spotify Scripts",
+    "description": "The label for category Spotify Scripts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Spotify Scripts.link.generated-index.description": {
+    "message": "Documentation for the Spotify scripts",
+    "description": "The generated-index page description for category Spotify Scripts in sidebar tutorialSidebar"
+  }
+}
