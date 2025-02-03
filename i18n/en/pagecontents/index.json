@@ -1,0 +1,10 @@
+{
+  "pages.content.index.title": {
+    "message": "Jonas_Jones Documentation",
+    "description": "Title of the Index documentation page"
+  },
+  "pages.content.index.subtitle": {
+    "message": "Anything specific you're looking for?",
+    "description": "Subtitle of the Index documentation page"
+  }
+}

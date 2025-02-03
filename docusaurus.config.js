@@ -11,6 +11,7 @@ const config = {
   title: 'Jonas_Jones Docs',
   tagline: 'docs.jonasjones.dev',
   favicon: 'img/favicon.png',
+  staticDirectories: ['static', 'i18n'],
 
   // Set the production url of your site here
   url: 'https://docs.jonasjones.dev',
@@ -31,7 +32,7 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'de'],
   },
 
   presets: [
