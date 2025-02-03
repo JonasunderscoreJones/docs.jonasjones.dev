@@ -8,6 +8,13 @@ const Translate = ({ id }) => {
   const [loading, setLoading] = useState(true);
   const { i18n } = useDocusaurusContext();
 
+  // Look up translation from the default Docusaurus translations first
+  let translation = translate({ id });
+
+  if (translation !== id) {
+    return <>{translation}</>; // Return the translation if found
+  }
+
   useEffect(() => {
     const fetchTranslations = async () => {
       try {
@@ -27,9 +34,6 @@ const Translate = ({ id }) => {
   if (loading) {
     return <span>Loading...</span>; // Show a loading state while translations are being fetched
   }
-
-  // Look up translation from the default Docusaurus translations first
-  let translation = translate({ id });
 
   // If not found in the default translations, try additional files
     if (translation == id && translations[id]) {
