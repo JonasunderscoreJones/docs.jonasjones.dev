@@ -94,6 +94,20 @@ const config = {
         },
         items: [
           {
+            type: 'localeDropdown',
+            position: 'right',
+            dropdownItemsAfter: [
+              {
+                type: 'html',
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+              {
+                href: 'https://github.com/JonasunderscoreJones/docs.jonasjones.dev/issues/new?title=Translationfix',
+                label: 'Help translating!',
+              },
+            ],
+          },
+          {
             href: 'https://jonasjones.dev',
             label: 'Homepage',
             position: 'right',
