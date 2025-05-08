@@ -1,0 +1,10 @@
+{
+    "position": 8,
+    "label": "Arch Linux System Setup",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "Guide to setup my Arch Linux system"
+    }
+  }
