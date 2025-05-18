@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: /archsetup/
+slug: /linux/archsetup/
 ---
 
 # Arch-Linux Setup

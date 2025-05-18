@@ -33,6 +33,10 @@ cp /tmp/jetbrains-nerd-font/JetBrainsMonoNerdFont-Bold.ttf ~/.local/share/fonts/
 fc-cache -f -v
 
 ```
+:::note
+This is for the JetBrains Mono Font. All other available fonts can be found in [this](https://github.com/archdroid20/nerd-fonts-complete) repository.
+:::
+
 Restart the terminal / reinitialize the shell and any other programs you might need in order to update the emojis and icons for the next step or else they won't appear in the ZSH setup process.
 
 ## Icon pack (MacOS-Icons)
@@ -120,7 +124,31 @@ The following flatpaks can also be installed:
 flatpak install ca.desrt.dconf-editor cc.arduino.IDE2 com.bitwarden.desktop com.discordapp.Discord com.github.Matoking.protontricks com.github.tchx84.Flatseal com.heroicgameslauncher.hgl com.jaquadro.NBTExplorer com.mattjakeman.ExtensionManager com.modrinth.ModrinthApp com.obsproject.Studio com.playonlinux.PlayOnLinux4 com.protonvpn.www com.skype.Client com.spotify.Client com.sublimetext.three com.usebottles.bottles com.valvesoftware.Steam com.visualstudio.code dev.alextren.Spot dev.lasheen.qr fr.romainvigier.MetadataCleaner io.github.arunsivaramanneo.GPUViewer io.github.diegoivan.pdf_metadata_editor io.github.flattool.Warehouse io.github.Foldex.AdwSteamGtk io.gitlab.gregorni.Letterpress io.github.jonmagon.kdiskmark io.github.prateekmedia.appimagepool io.github.realmazharhussain.GdmSettings io.github.shiftey.Desktop io.github.thetumultuousunicornofdarkness.cpu-x io.github.ungoogled_software.ungoogled_chromium net.ankiweb.Anki net.lutris.Lutris org.audacityteam.Audacity org.bleachbit.BleachBit org.blender.Blender org.freedesktop.Piper org.gaphor.Gaphor org.gnome.Boxes org.gnome.design.IconLibrary org.gnome.PowerStats org.gnome.seahorse.Application org.gnome.World.PikaBackup org.kde.filelight org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice org.mozilla.Thunderbird org.onlyoffice.desktopeditors org.prismlauncher.PrismLauncher org.qbittorrent.qBittorrent org.raspberrypi.rpi-imager org.signal.Signal org.torproject.torbrowser-launcher org.videolan.VLC page.kramo.Cartridges sh.ppy.osu xyz.xclicker.xclicker
 ```
 
+## Caddy and Reverse Proxy Aliases
+To achieve nice reverse proxies like `http://syncthing` for the local syncthing we need to install and enable `caddy`:
+```bash
+yay -S caddy
+sudo systemctl enable --now caddy
+```
+Now we edit the `/etc/hosts` file by adding the following line (e.g. for syncthing):
+```bash
+127.0.0.1 syncthing
+```
+Next, we add the configuration to `/etc/caddy/Caddyfile`:
+```json
+http://syncthing {
+    reverse_proxy 127.0.0.1:8384 {
+        header_up Host localhost
+    }
+}
+```
+A simple reload and it should work:
+```bash
+sudo systemctl reload caddy
+```
+
 ## SDKman and java
+To easily install and mange different java versions, we install SDKman along with Java 21:
 ```bash
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -245,6 +273,8 @@ gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
 # Set keyboard layout to English (US, intl with dead keys)
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us:intl')]"
 ```
+
+:::info[Coming Soon]
 //TODO: additional config
 
 ## KDE
@@ -252,3 +282,4 @@ gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us:intl')]"
 
 ## Niri
 //TODO everything
+:::
