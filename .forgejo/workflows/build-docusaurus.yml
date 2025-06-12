@@ -12,6 +12,11 @@ jobs:
       - name: checkout repository
         uses: https://code.forgejo.org/actions/checkout@v4
 
+      - name: Debug workspace
+        run: |
+          pwd
+          ls -la
+
       - name: setup node
         uses: https://github.com/actions/setup-node@v4
         with:
