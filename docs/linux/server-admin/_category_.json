@@ -1,0 +1,10 @@
+{
+    "position": 8,
+    "label": "Server Admin",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "Guides Server Administration"
+    }
+  }
