@@ -90,6 +90,9 @@ const config = {
         { name: 'url', content: 'https://docs.jonasjones.dev/' },
         { name: 'theme-color', content: '#008080' },
 
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:image', content: 'https://docs.jonasjones.dev/img/favicon.png' },
+
         { property: 'og:title', content: "Jonas_Jones's Homepage" },
         { property: 'og:description', content: "The Home of all creations by Jonas_Jones!" },
         { property: 'og:image', content: 'https://docs.jonasjones.dev/img/favicon.png' },
