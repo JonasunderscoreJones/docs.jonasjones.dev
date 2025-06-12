@@ -40,7 +40,7 @@ jobs:
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: docusaurus-artifacts.zip
-          path: docusaurus/build/
+          path: build
           if-no-files-found: error
 
       - name: cache downloaded dependencies
