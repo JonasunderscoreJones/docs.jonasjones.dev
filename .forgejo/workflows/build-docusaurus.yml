@@ -31,7 +31,7 @@ jobs:
       - name: build project
         run: npm run build
 
-      - name: Capture entire build folder
+      - name: capture build artifacts
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: docusaurus-build-artifacts
