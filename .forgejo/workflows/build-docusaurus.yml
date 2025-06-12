@@ -34,7 +34,7 @@ jobs:
       - name: capture build artifacts
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
-          name: docusaurus-build-artifacts
+          name: docusaurus-build-artifacts.zip
           path: build
           if-no-files-found: error
 
