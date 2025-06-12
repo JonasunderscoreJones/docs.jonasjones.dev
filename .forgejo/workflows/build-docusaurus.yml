@@ -44,7 +44,7 @@ jobs:
       - name: Capture entire build folder
         uses: https://code.forgejo.org/forgejo/upload-artifact@v3
         with:
-          name: build-artifacts
+          name: docusaurus-build-artifacts
           path: build
           if-no-files-found: error
 

@@ -34,7 +34,7 @@ jobs:
       - name: capture build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: docusaurus-build
+          name: docusaurus-build-artifacts
           path: build
 
       - name: Save npm cache
