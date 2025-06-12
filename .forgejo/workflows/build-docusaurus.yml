@@ -32,11 +32,9 @@ jobs:
 
       - name: install dependencies
         run: npm install --frozen-lockfile
-        working-directory: docusaurus
 
       - name: build project
         run: npm run build
-        working-directory: docusaurus
 
       - name: capture build artifacts
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
