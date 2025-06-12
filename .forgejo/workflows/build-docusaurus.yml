@@ -32,7 +32,7 @@ jobs:
         run: npm run build
 
       - name: Capture entire build folder
-        uses: https://code.forgejo.org/forgejo/upload-artifact@v3
+        uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: docusaurus-build-artifacts
           path: build
