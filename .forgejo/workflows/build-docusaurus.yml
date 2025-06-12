@@ -36,10 +36,10 @@ jobs:
       - name: build project
         run: npm run build
 
-      - name: capture build artifacts
+      - name: Capture entire build folder
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
-          name: docusaurus-artifacts.zip
+          name: build-artifacts
           path: build
           if-no-files-found: error
 
