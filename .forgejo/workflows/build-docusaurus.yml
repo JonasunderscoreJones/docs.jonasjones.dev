@@ -36,18 +36,17 @@ jobs:
       - name: build project
         run: npm run build
 
+      - name: Debug2
+        run: |
+          echo "Listing build directory"
+          ls -l build
+
       - name: Capture entire build folder
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: build-artifacts
           path: build
           if-no-files-found: error
-
-      - name: Debug2
-        run: |
-          echo "Listing build directory"
-          ls -l build
-
 
       - name: cache downloaded dependencies
         if: ${{ github.ref_name == github.event.repository.default_branch }}
