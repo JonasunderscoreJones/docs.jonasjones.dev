@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: /linux/docker-mailserver
+slug: /misc/linux/docker-mailserver
 ---
 
 # Docker Mailserver

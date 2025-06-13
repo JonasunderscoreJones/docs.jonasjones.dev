@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-slug: /linux/server-admin/drive-automount
+slug: /misc/linux/server-admin/drive-automount
 ---
 
 # Adding an Automount Drive on Linux

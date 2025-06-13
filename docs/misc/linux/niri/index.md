@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: /linux/niri
+slug: /misc/linux/niri
 ---
 
 # Overview

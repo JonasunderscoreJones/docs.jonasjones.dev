@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: /linux/server-admin/partition-and-filesystem
+slug: /misc/linux/server-admin/partition-and-filesystem
 ---
 
 # Creating Partition Tables and Filesystems on Linux

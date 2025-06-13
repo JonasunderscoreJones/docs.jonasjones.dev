@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-slug: /archsetup/headless
+slug: /misc/archsetup/headless
 ---
 
 # Server (headless)
