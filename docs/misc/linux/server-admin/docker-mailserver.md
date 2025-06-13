@@ -5,7 +5,7 @@ slug: /misc/linux/server-admin/docker-mailserver
 
 # Docker Mailserver
 
-This guide installs docker-mailserver with SSL/TLS for secure incoming and outgoing mail. Below each step includes explanations of what it accomplishes.
+This guide installs docker-mailserver with SSL/TLS for secure incoming and outgoing mail.
 
 ## Step 1: Create project directory
 ```bash
@@ -103,7 +103,7 @@ openssl s_client -connect mail.example.com:993
 openssl s_client -starttls smtp -connect mail.example.com:587
 ```
 
-## Step 8: Add Email Aliases
+## Step 8: Add Email Aliases (Optional)
 First, create the alias file:
 ```bash
 nano config/postfix-virtual.cf
