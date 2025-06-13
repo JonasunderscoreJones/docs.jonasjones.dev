@@ -36,7 +36,7 @@ Now You can copy the certificates into the directory:
 ```bash
 sudo cp /etc/letsencrypt/live/mail.example.com/fullchain.pem config/ssl/
 sudo cp /etc/letsencrypt/live/mail.example.com/privkey.pem config/ssl/
-
+```
 ## Step 3: Create docker-compose.yml
 ```yaml
 version: '3.8'
