@@ -5,12 +5,6 @@ slug: /
 
 # Jonas_Jones Documentation
 
-:::info
-Here is all the documentation to my *personal* projects.
-
-*All projecets managed by Organizations have their separate docs.*
-:::
-
 ## Anything specific you're looking for?
 Check out the sidebar or here, below:
 <div className="page-content-flex-container">
@@ -43,3 +37,11 @@ Check out the sidebar or here, below:
   An Overview of all my Services and Platforms
   </div>
 </div>
+
+<br></br>
+
+:::info
+Here is all the documentation to my *personal* projects.
+
+*All projecets managed by Organizations have their separate docs.*
+:::
