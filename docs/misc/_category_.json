@@ -1,0 +1,10 @@
+{
+    "position": 99,
+    "label": "Miscelanous",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "description": "Miscelanous documentation unrelated to my Projects"
+    }
+  }

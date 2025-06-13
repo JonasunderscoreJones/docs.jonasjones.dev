@@ -1,10 +1,10 @@
 {
-    "position": 2,
-    "label": "API",
+    "position": 8,
+    "label": "Server Admin",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "description": "Documentation for the Jonas_Jones API"
+        "description": "Guides Server Administration"
     }
 }
