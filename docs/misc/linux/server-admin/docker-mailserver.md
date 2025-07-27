@@ -15,11 +15,10 @@ cd docker-mailserver
 
 ## Step 2: Create SSL Certificates
 If your mail server domain is publicly accessible, use Certbot to obtain trusted SSL certificates for free.
-### use Let's Encrypt
 ```bash
 sudo certbot certonly --manual --preferred-challenges dns -d mail.example.com
 ```
-Now, add a TXT DNS-Record as indicated by the instructions in the terminal, then hit enter.
+Now, add a TXT DNS-Record to your domain as indicated by the instructions in the terminal, then hit enter.
 
 This creates certificates typically in /etc/letsencrypt/live/mail.example.com/:
 
