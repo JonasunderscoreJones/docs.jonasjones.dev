@@ -17,7 +17,7 @@ cd docker-mailserver
 If your mail server domain is publicly accessible, use Certbot to obtain trusted SSL certificates for free.
 ### use Let's Encrypt
 ```bash
-sudo certbot certonly --manual --preferred-challenges dns -d mail.jonasjones.dev
+sudo certbot certonly --manual --preferred-challenges dns -d mail.example.com
 ```
 Now, add a TXT DNS-Record as indicated by the instructions in the terminal, then hit enter.
 
