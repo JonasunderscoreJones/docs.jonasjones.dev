@@ -165,6 +165,24 @@ yay -S xf86-video-intel vulkan-intel mesa lib32-mesa intel-hybrid-codec-driver i
 ```bash
 yay -S supergfxctl nvidia nvidia-prime nvidia-settings nvtop cuda-tools
 ```
+Installig the nvidia drivers is as simple as installing the package. A reboot is recommended in order to take effect.
+
+It is recommended (AT YOUR OWN RISK) to put the nvidia driver on the `IgnorePkg`-list in the pacman config file. This way shader caches of steam don't need to be revalidated on every update and the chance of catching a faulty update is reduced. To do this, update or uncomment the line in the config file:
+
+```properties title="/etc/pacman.conf"
+
+IgnorePkg   = nvidia nvidia-utils nvidia-dkms
+```
+
+:::warning
+
+Keeping the drivers on the ignore list keeps them outedated. Any bug-fixes and security updates won't be installed.
+
+This can also break the system - so be warned. Usually there's a fallback for only one of the plugged in monitors to turn on in a 4:3 aspect ratio which is enough to manually update the drivers and fix the issue with `sudo pacman -S nvidia nvidia-utils`, then reboot.
+
+TL;DR: Definetly do this at Your own risk!
+
+:::
 
 
 # Desktop Environment & Window Manager
