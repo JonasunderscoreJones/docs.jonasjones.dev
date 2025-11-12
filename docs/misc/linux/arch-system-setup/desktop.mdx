@@ -28,6 +28,7 @@ curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBra
 mkdir -p /tmp/jetbrains-nerd-font
 tar -xf JetBrainsMono.tar.xz -C /tmp/jetbrains-nerd-font
 
+mkdir -p ~/.local/share/fonts/
 cp /tmp/jetbrains-nerd-font/JetBrainsMonoNerdFont-Bold.ttf ~/.local/share/fonts/
 
 fc-cache -f -v
