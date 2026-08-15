@@ -29,8 +29,8 @@ Check out the sidebar or here, below:
 </div>
 <div className="page-content-flex-container">
   <div className="page-content-flex-box page-content-flex-box1">
-  ### [3D Printables](/overview/3d-printables)
-  Guides and Showcases of all my 3D Printables
+  ### [Guides](/overview/guides)
+  Guides to all kinds of things
   </div>
   <div className="page-content-flex-box page-content-flex-box2">
   ### [Services & Platforms](/overview/services-and-platforms)
