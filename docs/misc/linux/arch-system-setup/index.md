@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: /misc/linux/archsetup/
+slug: /guides/linux/archsetup/
 ---
 
 # Arch-Linux Setup
